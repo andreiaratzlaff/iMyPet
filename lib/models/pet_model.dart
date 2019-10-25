@@ -5,7 +5,7 @@ import 'package:imypet/shared/base_model.dart';
 
 class Pet extends BaseModel{
 String _documentId;
-String casdatro;
+String cadastro;
 String cor;
 DateTime dataNascimento;
 String especie;
@@ -31,7 +31,7 @@ Pet();
 
     var mapa = new Map<String, dynamic>();
   
-mapa ['casdatro'] = this.casdatro;
+mapa ['cadastro'] = this.cadastro;
 mapa ['cor'] = this.cor;
 mapa ['dataNascimento'] = this.dataNascimento;
 mapa ['especie'] = this.especie;
@@ -51,7 +51,7 @@ mapa ['proprietario_id'] = this.proprietario_id;
 
 Pet.fromMap(DocumentSnapshot documento){
   _documentId = documento.documentID;
-  this.casdatro = documento.data['cadastro'];
+  this.cadastro = documento.data['cadastro'];
   this.cor = documento.data['cor'];
   //definicao data
   Timestamp ts = documento.data ['dataNascimento'];
