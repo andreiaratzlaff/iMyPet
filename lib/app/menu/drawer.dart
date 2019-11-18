@@ -16,12 +16,18 @@ class MenuDrawer extends StatelessWidget {
           _createDrawerItem(
               icon: Icons.shop,
               text: 'Vacinas',
-              onTap: () => Navigator.pushReplacementNamed(context, Rotas.vacinas)),
-              
-               _createDrawerItem(
+              onTap: () =>
+                  Navigator.pushReplacementNamed(context, Rotas.vacinas)),
+          _createDrawerItem(
               icon: Icons.shop,
               text: 'Meus Dados',
-              onTap: () => Navigator.pushReplacementNamed(context, Rotas.meusdados)),
+              onTap: () =>
+                  Navigator.pushReplacementNamed(context, Rotas.meusdados)),
+          _createDrawerItem(
+              icon: Icons.shop,
+              text: 'Carteira Vacina',
+              onTap: () => Navigator.pushReplacementNamed(
+                  context, Rotas.carteiraVacina)),
           Divider(),
           _createDrawerItem(icon: Icons.collections_bookmark, text: 'Passos'),
           _createDrawerItem(icon: Icons.face, text: 'Autores'),
@@ -46,8 +52,7 @@ class MenuDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         decoration: BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('images/banhoetosa.png'))),
+                fit: BoxFit.fill, image: AssetImage('images/banhoetosa.png'))),
         child: Stack(children: <Widget>[
           Positioned(
               bottom: 12.0,

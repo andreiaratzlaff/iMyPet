@@ -19,6 +19,11 @@ class VacinasRepository extends Disposable {
           .map<Vacinas>((document) => Vacinas.fromMap(document))
           .toList()));
 
+  Observable<Vacinas> vacinasId( String _id) => 
+     Observable(_collection.where('documentID', isEqualTo: _id)
+     .snapshots().map((query) => query.documents.map<Vacinas>((document)
+     => Vacinas.fromMap(document)).first));
+
   Future fetchPost(Dio client) async {
     final response =
         await client.get('https://jsonplaceholder.typicode.com/posts/1');

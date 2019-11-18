@@ -6,7 +6,7 @@ import 'vacinas_repository.dart';
 
 class VacinasBloc extends BlocBase {
   var _repository = AppModule.to.getDependency<VacinasRepository>();
-  get vacinas => _repository.vacinas;
+  Observable<List<Vacinas>> get vacinas => _repository.vacinas;
 
   // VacinasEdit
   String _documentId;
@@ -40,6 +40,10 @@ class VacinasBloc extends BlocBase {
   }
 
   void delete(String documentId) => _repository.delete(documentId);
+
+  getVacinas(String vacinaId) {
+    return _repository.vacinasId(vacinaId);
+  }
 
   @override
   void dispose() {
