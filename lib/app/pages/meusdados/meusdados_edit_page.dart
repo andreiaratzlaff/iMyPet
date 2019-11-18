@@ -24,6 +24,7 @@ class _MeusdadosEditPageState extends State<MeusdadosEditPage> {
   TextEditingController _enderecoController;
   TextEditingController _estadoController;
   TextEditingController _cidadeController;
+  TextEditingController _userIdController;
 
   final _bloc = MeusdadosBloc();
 
@@ -43,6 +44,7 @@ class _MeusdadosEditPageState extends State<MeusdadosEditPage> {
         TextEditingController(text: widget.meusdados.endereco);
     _estadoController = TextEditingController(text: widget.meusdados.estado);
     _cidadeController = TextEditingController(text: widget.meusdados.cidade);
+    _userIdController = TextEditingController(text: widget.meusdados.userId);
 
     super.initState();
   }
@@ -59,6 +61,7 @@ class _MeusdadosEditPageState extends State<MeusdadosEditPage> {
     _enderecoController.dispose();
     _estadoController.dispose();
     _cidadeController.dispose();
+    _userIdController.dispose();
     super.dispose();
   }
 
@@ -146,13 +149,13 @@ class _MeusdadosEditPageState extends State<MeusdadosEditPage> {
               RaisedButton(
                   child: Text("Salvar"),
                   onPressed: () {
-                    FirebaseAuth.instance.currentUser().then((user){
-                      _bloc.setUserId(user.uid);
+                    FirebaseAuth.instance.currentUser().then((user) {
+                      if (_bloc.insertOrUpdate(user.uid.toString())) {
+                        Navigator.pop(context);
+                      }
+
+                      //_bloc.setUserId(user.uid);
                     });
-                    
-                    if (_bloc.insertOrUpdate()) {
-                      Navigator.pop(context);
-                    }
                   }),
             ],
           ),

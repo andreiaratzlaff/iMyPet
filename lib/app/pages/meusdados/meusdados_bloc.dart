@@ -92,10 +92,10 @@ class MeusdadosBloc extends BlocBase {
   void setCidade(String valor) => _cidadeController.sink.add(valor);
 
   var _userIdController = BehaviorSubject<String>();
-  Stream<String> get outuserId => _userIdController.stream;
+  Stream<String> get outUserId => _userIdController.stream;
   void setUserId(String valor) => _userIdController.sink.add(valor);
 
-  bool insertOrUpdate() {
+  bool insertOrUpdate(String uid) {
     var meusdados = Meusdados()
       ..nome = _nome
       ..cpf = _cpf
@@ -107,7 +107,7 @@ class MeusdadosBloc extends BlocBase {
       ..endereco = _endereco
       ..estado = _estado
       ..cidade = _cidade
-      ..userId = _userId;
+      ..userId = _userId.isEmpty? uid: _userId;
 
     if (_documentId?.isEmpty ?? true) {
       _repository.add(meusdados);
