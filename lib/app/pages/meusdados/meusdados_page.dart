@@ -27,11 +27,23 @@ class _MeusdadosPageState extends State<MeusdadosPage> {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
-            var meusdados = Meusdados()..nome = "";
+            var meusdados = Meusdados()
+              ..nome = ""
+              ..cpf = ""
+              ..email = ""
+              ..genero = ""
+              ..dddCelular = ""
+              ..dddTelefone = ""
+              ..cep = ""
+              ..endereco = ""
+              ..estado = ""
+              ..cidade = ""
+              ..userId = "";
 
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MeusdadosEditPage(meusdados)),
+              MaterialPageRoute(
+                  builder: (context) => MeusdadosEditPage(meusdados)),
             );
           },
         ),
@@ -58,7 +70,7 @@ class _MeusdadosPageState extends State<MeusdadosPage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                         MeusdadosEditPage(meusdados)),
+                                          MeusdadosEditPage(meusdados)),
                                 );
                               },
                             ));

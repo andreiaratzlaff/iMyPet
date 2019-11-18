@@ -9,10 +9,12 @@ class Meusdados extends ModeloBase {
   String email;
   String genero;
   String dddCelular;
-  String dddtelefone;
+  String dddTelefone;
   String cep;
   String endereco;
   String estado;
+  String cidade;
+  String userId;
 
   Meusdados();
 
@@ -24,10 +26,12 @@ class Meusdados extends ModeloBase {
     this.email = documento.data["email"];
     this.genero = documento.data["genero"];
     this.dddCelular = documento.data["dddCelular"];
-    this.dddtelefone = documento.data["dddTelefone"];
+    this.dddTelefone = documento.data["dddTelefone"];
     this.cep = documento.data["cep"];
     this.endereco = documento.data["endereco"];
     this.estado = documento.data["estado"];
+    this.cidade = documento.data["cidade"];
+    this.userId = documento.data["user_id"];
   }
 
   @override
@@ -38,10 +42,12 @@ class Meusdados extends ModeloBase {
     map['email'] = this.email;
     map['genero'] = this.genero;
     map['dddCelular'] = this.dddCelular;
-    map['dddtelefone'] = this.dddtelefone;
+    map['dddTelefone'] = this.dddTelefone;
     map['cep'] = this.cep;
     map['endereco'] = this.endereco;
     map['estado'] = this.estado;
+    map['cidade'] = this.cidade;
+    map['user_id'] = this.userId;
 
     return map;
   }
