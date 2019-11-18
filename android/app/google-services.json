@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "585676018234",
+    "firebase_url": "https://imypet.firebaseio.com",
+    "project_id": "imypet",
+    "storage_bucket": "imypet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585676018234:android:ca8b270ae8744e61eb5b03",
+        "android_client_info": {
+          "package_name": "com.imypet.imypet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585676018234-7o165937bcs68cjk8nh3736ovakb2oke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrGl4sDEh5c21EYu9l-Uzlt99CM-cqBNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585676018234-7o165937bcs68cjk8nh3736ovakb2oke.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
