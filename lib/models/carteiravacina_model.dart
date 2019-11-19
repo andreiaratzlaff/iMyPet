@@ -24,41 +24,42 @@ class CarteiraVacina extends ModeloBase {
   CarteiraVacina.fromMap(DocumentSnapshot documento) {
     _documentId = documento.documentID;
 
-    this.validade = getDateTime(documento.data["validade"]);
     this.codigoPet = documento.data["codigoPet"];
+    this.nomePet = documento.data["nomePet"];
+    this.peso = documento.data["peso"];
+    this.vacinaId = documento.data["vacinaId"];
+    this.vacina = documento.data["vacina"];
+    this.validade = getDateTime(documento.data["validade"]);
     this.dataAplicacao = getDateTime(documento.data["dataAplicacao"]);
+    this.eNecessarioRevacinar = documento.data["eNecessarioRevacinar"];
     this.dataProximaAplicacao =
         getDateTime(documento.data["dataProximaAplicacao"]);
-    this.eNecessarioRevacinar = documento.data["eNecessarioRevacinar"];
+
     this.fabricante = documento.data["fabricante"];
-    this.lembrete = documento.data["lembrete"];
-    this.nomePet = documento.data["nomePet"];
-    this.observacao = documento.data["observacao"];
-    this.peso = documento.data["peso"];
-    this.vacina = documento.data["vacina"];
-    this.vacinaId = documento.data["vacinaId"];
     this.vermifugoId = documento.data["vermifugoId"];
     this.vermifugos = documento.data["vermifugos"];
+    this.lembrete = documento.data["lembrete"];
+    this.observacao = documento.data["observacao"];
   }
 
   @override
   toMap() {
     var map = new Map<String, dynamic>();
 
-    map['validade'] = this.validade;
     map['codigoPet'] = this.codigoPet;
-    map['dataAplicacao'] = this.dataAplicacao;
-    map['dataProximaAplicacao'] = this.dataProximaAplicacao;
-    map['eNecessarioRevacinar'] = this.eNecessarioRevacinar;
-    map['fabricante'] = this.fabricante;
-    map['lembrete'] = this.lembrete;
     map['nomePet'] = this.nomePet;
-    map['observacao'] = this.observacao;
     map['peso'] = this.peso;
-    map['vacina'] = this.vacina;
     map['vacinaId'] = this.vacinaId;
+    map['vacina'] = this.vacina;
+    map['fabricante'] = this.fabricante;
+    map['validade'] = this.validade;
+    map['dataAplicacao'] = this.dataAplicacao;
+    map['eNecessarioRevacinar'] = this.eNecessarioRevacinar;
+    map['dataProximaAplicacao'] = this.dataProximaAplicacao;
     map['vermifugoId'] = this.vermifugoId;
     map['vermifugos'] = this.vermifugos;
+    map['lembrete'] = this.lembrete;
+    map['observacao'] = this.observacao;
 
     return map;
   }
