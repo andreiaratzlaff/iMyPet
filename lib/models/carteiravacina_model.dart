@@ -4,20 +4,20 @@ import 'modelo_base.dart';
 
 class CarteiraVacina extends ModeloBase {
   String _documentId;
-  DateTime validade;
   String codigoPet;
-  DateTime dataAplicacao;
-  DateTime dataProximaAplicacao;
-  bool eNecessarioRevacinar;
-  String fabricante;
-  String lembrete;
   String nomePet;
-  String observacao;
   int peso;
-  String vacina;
   String vacinaId;
+  String vacina;
+  String fabricante;
+  DateTime validade;
+  DateTime dataAplicacao;
+  bool eNecessarioRevacinar;
+  DateTime dataProximaAplicacao;
   String vermifugoId;
   String vermifugos;
+  String lembrete;
+  String observacao;
 
   CarteiraVacina();
 
@@ -34,8 +34,7 @@ class CarteiraVacina extends ModeloBase {
     this.eNecessarioRevacinar = documento.data["eNecessarioRevacinar"];
     this.dataProximaAplicacao =
         getDateTime(documento.data["dataProximaAplicacao"]);
-
-    this.fabricante = documento.data["fabricante"];
+   this.fabricante = documento.data["fabricante"];
     this.vermifugoId = documento.data["vermifugoId"];
     this.vermifugos = documento.data["vermifugos"];
     this.lembrete = documento.data["lembrete"];
@@ -45,7 +44,6 @@ class CarteiraVacina extends ModeloBase {
   @override
   toMap() {
     var map = new Map<String, dynamic>();
-
     map['codigoPet'] = this.codigoPet;
     map['nomePet'] = this.nomePet;
     map['peso'] = this.peso;
