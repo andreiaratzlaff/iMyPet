@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'modelo_base.dart';
@@ -8,7 +10,7 @@ class Pet extends ModeloBase {
   String especie;
   String nome;
   String cor;
-  int peso;
+  double peso;
   DateTime dataNascimento;
   String sexo;
   String pelagem;

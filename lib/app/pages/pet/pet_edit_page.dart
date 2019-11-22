@@ -16,11 +16,11 @@ class _PetEditPageState extends State<PetEditPage> {
  //final _blocPet = PetBloc();
  Pet _pet = new Pet();
  //final _dateFormat = DateFormat("dd/MM/yyyy");
-
+  TextEditingController _codigoPetController;
   TextEditingController _especieController;
   TextEditingController _nomeController;
   TextEditingController _corController;
-  //TextEditingController _pesoController;
+  TextEditingController _pesoController;
   TextEditingController _sexoController;
   TextEditingController _pelagemController;
   TextEditingController _castradoController;
@@ -31,6 +31,7 @@ class _PetEditPageState extends State<PetEditPage> {
     _bloc.setPet(widget.pet);
 
    // _codigoPetController = TextEditingController(text: widget.pet.codigoPet);
+    //_cogigoPetController = TextEditingController(text: widget.pet.especie);
     _especieController = TextEditingController(text: widget.pet.especie);
     _nomeController = TextEditingController(text: widget.pet.nome);
     _corController = TextEditingController(text: widget.pet.cor);
@@ -59,7 +60,7 @@ class _PetEditPageState extends State<PetEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("iMyPet"),
+        title: Text("Pet"),
       ),
       body: Container(
         child: Padding(
@@ -87,6 +88,8 @@ class _PetEditPageState extends State<PetEditPage> {
                       onChanged: _bloc.setCor,
                     ),
                   ),
+
+                  
                   Container(
                     child: TextField(
                       decoration: InputDecoration(labelText: "Sexo"),
@@ -112,6 +115,14 @@ class _PetEditPageState extends State<PetEditPage> {
                   
                  RaisedButton(
                   child: Text("Salvar"),
+                  onPressed: () {
+                    if (_bloc.insertOrUpdate()) {
+                      Navigator.pop(context);
+                    }
+                  }),
+
+                  RaisedButton(
+                  child: Text("Editar"),
                   onPressed: () {
                     if (_bloc.insertOrUpdate()) {
                       Navigator.pop(context);

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:iMyPet/models/pet_model.dart';
 import 'package:rxdart/rxdart.dart';
@@ -15,11 +17,12 @@ class PetBloc extends BlocBase {
   String _especie;
   String _nome;
   String _cor;
-  int _peso;
+  double _peso;
   DateTime _dataNascimento;
   String _sexo;
   String _pelagem;
   String _observacao;
+  String  _userId;
 
   PetBloc() {
     _codigoPetController.listen((value) => _codigoPet = value);
@@ -61,16 +64,16 @@ class PetBloc extends BlocBase {
   Stream<String> get outCor => _corController.stream;
   void setCor(String valor) => _corController.sink.add(valor);
 
-  var _pesoController = BehaviorSubject<int>();
-  Stream<int> get outPeso => _pesoController.stream;
-  void setPeso(int valor) => _pesoController.sink.add(valor);
+  var _pesoController = BehaviorSubject<double>();
+  Stream<double> get outPeso => _pesoController.stream;
+  void setPeso(double valor) => _pesoController.sink.add(valor);
 
   var _dataNascimentoController = BehaviorSubject<DateTime>();
   Stream<DateTime> get outDataNascimento => _dataNascimentoController.stream;
   void setDataNascimento(DateTime valor) =>
       _dataNascimentoController.sink.add(valor);
 
-  var _sexoController = BehaviorSubject<String>();
+  var _sexoController = BehaviorSubject<String>(); 
   Stream<String> get outSexo => _sexoController.stream;
   void setSexo(String valor) => _sexoController.sink.add(valor);
 
@@ -93,6 +96,7 @@ class PetBloc extends BlocBase {
       ..sexo = _sexo
       ..pelagem = _pelagem
       ..observacao = _observacao;
+     // ..userId = _userId.isEmpty? uid: _userId
 
     if (_documentId?.isEmpty ?? true) {
       _repository.add(pet);

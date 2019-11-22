@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:iMyPet/app/menu/drawer.dart';
 import 'package:iMyPet/app/pages/pet/pet_bloc.dart';
@@ -31,8 +33,8 @@ class _PetPageState extends State<PetPage> {
             ..especie = ""
             ..nome = ""
             ..cor = ""
-            ..peso = 0
-            ..dataNascimento = DateTime.now()
+            ..peso = 0.0
+            ..dataNascimento = DateTime.now() 
             ..sexo = ""
             ..pelagem = ""
             ..observacao = "";
