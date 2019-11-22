@@ -28,14 +28,11 @@ class MenuDrawer extends StatelessWidget {
               text: 'Carteira Vacina',
               onTap: () => Navigator.pushReplacementNamed(
                   context, Rotas.carteiraVacina)),
-<<<<<<< HEAD
           _createDrawerItem(
               icon: Icons.shop,
               text: 'Pet',
               onTap: () => Navigator.pushReplacementNamed(
                   context, Rotas.pet)),
-=======
->>>>>>> d1f0c6d65c3c11830a19ae8dc3e6aa856dc029fb
           Divider(),
           _createDrawerItem(icon: Icons.collections_bookmark, text: 'Passos'),
           _createDrawerItem(icon: Icons.face, text: 'Autores'),
@@ -67,11 +64,7 @@ class MenuDrawer extends StatelessWidget {
               left: 16.0,
               child: Text("iMyPet Menu",
                   style: TextStyle(
-<<<<<<< HEAD
                       color: Colors.black,
-=======
-                      color: Colors.white,
->>>>>>> d1f0c6d65c3c11830a19ae8dc3e6aa856dc029fb
                       fontSize: 20.0,
                       fontWeight: FontWeight.w500))),
         ]));
