@@ -1,4 +1,5 @@
 import 'dart:core';
+
 import 'dart:ffi';
 
 import 'package:bloc_pattern/bloc_pattern.dart';
@@ -12,9 +13,8 @@ class BanhoETosaBloc extends BlocBase {
   var _repository = AppModule.to.getDependency<BanhoETosaRepository>();
   get banhoETosa => _repository.banhoETosa;
 
-  // VacinasEdit
-  String _documentId;
-  String codigoPet;
+   String _documentId;  
+   String codigoPet;
   String codigoEmpresaPetshop;
   DateTime agendarDataHorario;
   String selecioneTipoServico;

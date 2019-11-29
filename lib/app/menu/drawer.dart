@@ -31,8 +31,12 @@ class MenuDrawer extends StatelessWidget {
           _createDrawerItem(
               icon: Icons.shop,
               text: 'Pet',
-              onTap: () => Navigator.pushReplacementNamed(
-                  context, Rotas.pet)),
+              onTap: () => Navigator.pushReplacementNamed(context, Rotas.pet)),
+          _createDrawerItem(
+              icon: Icons.shop,
+              text: 'Banho & Tosa',
+              onTap: () =>
+                  Navigator.pushReplacementNamed(context, Rotas.banhoETosa)),
           Divider(),
           _createDrawerItem(icon: Icons.collections_bookmark, text: 'Passos'),
           _createDrawerItem(icon: Icons.face, text: 'Autores'),

@@ -7,6 +7,7 @@ import 'package:iMyPet/app/pages/home/home_page.dart';
 import 'package:iMyPet/app/pages/meusdados/meusdados_page.dart';
 import 'package:iMyPet/app/pages/pet/pet_page.dart';
 import 'package:iMyPet/app/pages/vacinas/vacinas_page.dart';
+import 'pages/banhoETosa/banhoETosa_page.dart';
 import 'pages/login/signin_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -19,6 +20,7 @@ class AppWidget extends StatelessWidget {
         Rotas.meusdados: (context) => MeusdadosPage(),
         Rotas.carteiraVacina: (context) => CarteiraVacinaPage(),
         Rotas.pet: (context) => PetPage(),
+          Rotas.banhoETosa: (context) => BanhoETosaPage(),
       },
       title: 'Flutter Slidy',
       theme: ThemeData(

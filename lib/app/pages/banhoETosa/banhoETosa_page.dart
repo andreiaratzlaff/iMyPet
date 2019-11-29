@@ -44,7 +44,8 @@ class _BanhoETosaPageState extends State<BanhoETosaPage> {
              ..telebusca = false
 ..informeLocalDeBuscaeEntrega = ""
 ..observacao =""
-..valor = 0;
+//..valor =0
+;
       
 
           Navigator.push(
