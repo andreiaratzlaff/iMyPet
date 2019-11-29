@@ -13,47 +13,48 @@ class BanhoETosaBloc extends BlocBase {
   var _repository = AppModule.to.getDependency<BanhoETosaRepository>();
   get banhoETosa => _repository.banhoETosa;
 
-   String _documentId;  
-   String codigoPet;
-  String codigoEmpresaPetshop;
-  DateTime agendarDataHorario;
-  String selecioneTipoServico;
-  bool tosa;
-  String informeTipoTosa;
-  bool hidratacaoPelo;
-  String tipoHidratacao;
-  bool aplicarVermifugo;
-  String tipoVermifugo;
-  bool aplicarRemedioPulgas;
-  String tipoRemedioPulga;
-  bool telebusca;
-  String informeLocalDeBuscaeEntrega;
-  String observacao;
- Double valor;
-
+  String _documentId;
+  String _codigoPet;
+  String _codigoEmpresaPetshop;
+  DateTime _agendarDataHorario;
+  String _selecioneTipoServico;
+  bool _tosa;
+  String _informeTipoTosa;
+  bool _hidratacaoPelo;
+  String _tipoHidratacao;
+  bool _aplicarVermifugo;
+  String _tipoVermifugo;
+  bool _aplicarRemedioPulgas;
+  String _tipoRemedioPulga;
+  bool _telebusca;
+  String _informeLocalDeBuscaeEntrega;
+  String _observacao;
+  Double _valor;
 
   BanhoETosaBloc() {
     _codigoPetController.listen((value) => _codigoPet = value);
-    _codigoEmpresaPetshopController.listen((value) => _codigoEmpresaPetshop = value);
-    _agendarDataHorarioController.listen((value) => _agendarDataHorario = value);
- _selecioneTipoServicoController.listen((value) => _selecioneTipoServico = value);
-  _tosaController.listen((value) => _tosa = value);
-   _informeTipoTosaController.listen((value) => _informeTipoTosa = value);
+    _codigoEmpresaPetshopController
+        .listen((value) => _codigoEmpresaPetshop = value);
+    _agendarDataHorarioController
+        .listen((value) => _agendarDataHorario = value);
+    _selecioneTipoServicoContoller
+        .listen((value) => _selecioneTipoServico = value);
+    _tosaController.listen((value) => _tosa = value);
+    _informeTipoTosaController.listen((value) => _informeTipoTosa = value);
     _hidratacaoPeloController.listen((value) => _hidratacaoPelo = value);
     _tipoHidratacaoController.listen((value) => _tipoHidratacao = value);
     _aplicarVermifugoController.listen((value) => _aplicarVermifugo = value);
     _tipoVermifugoController.listen((value) => _tipoVermifugo = value);
-    _aplicarRemedioPulgasController.listen((value) => _aplicarRemedioPulgas = value);
-    _tipoRemedioPulgaController.listen((value) => tipoRemedioPulga = value);
     _telebuscaController.listen((value) => _telebusca = value);
-    _informeLocalDeBuscaeEntregaController.listen((value) => _informeLocalDeBuscaeEntrega = value);
+    _informeLocalDeBuscaeEntregaController
+        .listen((value) => _informeLocalDeBuscaeEntrega = value);
     _observacaoController.listen((value) => _observacao = value);
-    _ valorController.listen((value) => _valor = value);
- 
+    _valorController.listen((value) => _valor = value);
+
+    // _userIdController.listen((value) => _userId = value);
   }
 
-
-  void setBanhoETosa (BanhoETosa banhoETosa) {
+  void setBanhoETosa(BanhoETosa banhoETosa) {
     _documentId = banhoETosa.documentId();
     setCodigoPet(banhoETosa.codigoPet);
     setCodigoEmpresaPetshop(banhoETosa.codigoEmpresaPetshop);
@@ -62,139 +63,79 @@ class BanhoETosaBloc extends BlocBase {
     setTosa(banhoETosa.tosa);
     setInformeTipoTosa(banhoETosa.informeTipoTosa);
     setHidratacaoPelo(banhoETosa.hidratacaoPelo);
-    setTipoHidratacao(banhoETosa.selecionetipoHidratacao);
+    setTipoHidratacao(banhoETosa.tipoHidratacao);
     setAplicarVermifugo(banhoETosa.aplicarVermifugo);
     setTipoVermifugo(banhoETosa.tipoVermifugo);
-    setAplicarRemedioPulgas(banhoETosa.aplicarRemedioPulgas);
-    setipoRemedioPulga(banhoETosa.tipoRemedioPulga);
     setTelebusca(banhoETosa.telebusca);
     setInformeLocalDeBuscaeEntrega(banhoETosa.informeLocalDeBuscaeEntrega);
     setObservacao(banhoETosa.observacao);
     setValor(banhoETosa.valor);
 
+   // setUserId(banhoETosa.userId);
   }
 
-var _codigoPetController = BehaviorSubject<String>();
+  var _codigoPetController = BehaviorSubject<String>();
   Stream<String> get outCodigoPet => _codigoPetController.stream;
   void setCodigoPet(String valor) => _codigoPetController.sink.add(valor);
 
-  var _codigoEmpresaPetshopController = BehaviorSubject<String>();
-  Stream<String> get outCodigoEmpresaPetshop => _codigoEmpresaPetshopController.stream;
-  void setCodigoEmpresaPetshop(String valor) => _codigoEmpresaPetshopController.sink.add(valor);
+  var _cpfController = BehaviorSubject<String>();
+  Stream<String> get outCpf => _cpfController.stream;
+  void setCpf(String valor) => _cpfController.sink.add(valor);
 
-     var _agendarDataHorarioController = BehaviorSubject<DateTime>();
-  Stream<DateTime> get outAgendarDataHorario =>
-      _agendarDataHorarioController.stream;
-  void setAgendarDataHorario(DateTime valor) =>
-      _agendarDataHorarioController.sink.add(valor);
+  var _emailController = BehaviorSubject<String>();
+  Stream<String> get outEmail => _emailController.stream;
+  void setEmail(String valor) => _emailController.sink.add(valor);
 
-var _selecioneTipoServicoController = BehaviorSubject<String>();
-  Stream<String> get outSelecioneTipoServico => _selecioneTipoServicoController.stream;
-  void setSelecioneTipoServico(String valor) => _selecioneTipoServicoController.sink.add(valor);
+  var _generoController = BehaviorSubject<String>();
+  Stream<String> get outgenero => _generoController.stream;
+  void setGenero(String valor) => _generoController.sink.add(valor);
 
-      
-  DateTime ;
-  String ;
-  bool tosa;
-  String informeTipoTosa;
-  bool hidratacaoPelo;
-  String tipoHidratacao;
-  bool aplicarVermifugo;
-  String tipoVermifugo;
-  bool aplicarRemedioPulgas;
-  String tipoRemedioPulga;
-  bool telebusca;
-  String informeLocalDeBuscaeEntrega;
-  String observacao;
-  Double valor;
+  var _dddCelularController = BehaviorSubject<String>();
+  Stream<String> get outdddCelular => _dddCelularController.stream;
+  void setDDDCelular(String valor) => _dddCelularController.sink.add(valor);
 
-  var _dataProximaAplicacaoController = BehaviorSubject<DateTime>();
-  Stream<DateTime> get outDataProximaAplicacao =>
-      _dataProximaAplicacaoController.stream;
-  void setDataProximaAplicacao(DateTime valor) =>
-      _dataProximaAplicacaoController.sink.add(valor);
+  var _dddTelefoneController = BehaviorSubject<String>();
+  Stream<String> get outdddTelefone => _dddTelefoneController.stream;
+  void setDDDTelefone(String valor) => _dddTelefoneController.sink.add(valor);
 
-  var _eNecessarioRevacinarController = BehaviorSubject<bool>();
-  Stream<bool> get outENecessarioRevacinar =>
-      _eNecessarioRevacinarController.stream;
-  void setENecessarioRevacinar(bool valor) =>
-      _eNecessarioRevacinarController.sink.add(valor);
+  var _cepController = BehaviorSubject<String>();
+  Stream<String> get outcep => _cepController.stream;
+  void setCep(String valor) => _cepController.sink.add(valor);
 
-  var _fabricanteController = BehaviorSubject<String>();
-  Stream<String> get outFabricante => _fabricanteController.stream;
-  void setFabricante(String valor) => _fabricanteController.sink.add(valor);
+  var _enderecoController = BehaviorSubject<String>();
+  Stream<String> get outendereco => _enderecoController.stream;
+  void setEndereco(String valor) => _enderecoController.sink.add(valor);
 
-  var _lembreteController = BehaviorSubject<String>();
-  Stream<String> get outLembrete => _lembreteController.stream;
-  void setLembrete(String valor) => _lembreteController.sink.add(valor);
+  var _estadoController = BehaviorSubject<String>();
+  Stream<String> get outestado => _estadoController.stream;
+  void setEstado(String valor) => _estadoController.sink.add(valor);
 
-  var _nomePetController = BehaviorSubject<String>();
-  Stream<String> get outNomePet => _nomePetController.stream;
-  void setNomePet(String valor) => _nomePetController.sink.add(valor);
+  var _cidadeController = BehaviorSubject<String>();
+  Stream<String> get outcidade => _cidadeController.stream;
+  void setCidade(String valor) => _cidadeController.sink.add(valor);
 
-  var _observacaoController = BehaviorSubject<String>();
-  Stream<String> get outObservacao => _observacaoController.stream;
-  void setObservacao(String valor) => _observacaoController.sink.add(valor);
+  var _userIdController = BehaviorSubject<String>();
+  Stream<String> get outUserId => _userIdController.stream;
+  void setUserId(String valor) => _userIdController.sink.add(valor);
 
-  var _pesoController = BehaviorSubject<int>();
-  Stream<int> get outPeso => _pesoController.stream;
-  void setPeso(int valor) => _pesoController.sink.add(valor);
-
-  var _vacinaController = BehaviorSubject<String>();
-  Stream<String> get outVacina => _vacinaController.stream;
-  void setVacina(String valor) => _vacinaController.sink.add(valor);
-
-  var _vacinaIdController = BehaviorSubject<String>();
-  Stream<String> get outVacinaId => _vacinaIdController.stream;
-  void setVacinaId(String valor) => _vacinaIdController.sink.add(valor);
-
-  var _vermifugoIdController = BehaviorSubject<String>();
-  Stream<String> get outVermifugoId => _vermifugoIdController.stream;
-  void setVermifugoId(String valor) => _vermifugoIdController.sink.add(valor);
-
-  var _vermifugosController = BehaviorSubject<String>();
-  Stream<String> get outVermifugos => _vermifugosController.stream;
-  void setVermifugos(String valor) => _vermifugosController.sink.add(valor);
-
-  bool insertOrUpdate() {
+  bool insertOrUpdate(String uid) {
     var banhoETosa = BanhoETosa()
       ..codigoPet = _codigoPet
-      ..codigoEmpresaPetshop = _codigoEmpresaPetshop
-      ..agendarDataHorario = _agendarDataHorario
-      ..selecioneTipoServico = _selecioneTipoServico
-      ..tosa= _tosa
-      ..informeTipoTosa = _informeTipoTosa
-     ..hidratacaoPelo = hidratacaoPelo
-      ..tipoHidratacao = tipoHidratacao
-      
-      ..aplicarVermifugo = _aplicarVermifugo
-      ..tipoVermifugo = _tipoVermifugo
-      ..vacinaId = _vacinaId
-      ..vermifugoId = _vermifugoId
-      ..vermifugos = _vermifugos;
-aplicarRemedioPulgas
-       String _documentId;
-  String codigoPet;
-  String ;
-  DateTime ;
-  String ;
-  bool ;
-  String ;
-  bool ;
-  String ;
-  bool ;
-  String ;
-  bool ;
-  String tipoRemedioPulga;
-  bool telebusca;
-  String informeLocalDeBuscaeEntrega;
-  String observacao;
-  Double valor;
+      ..codigoEmpresaPetshop = _codigoPet
+      ..email = _email
+      ..genero = _genero
+      ..dddCelular = _dddCelular
+      ..dddTelefone = _dddTelefone
+      ..cep = _cep
+      ..endereco = _endereco
+      ..estado = _estado
+      ..cidade = _cidade
+      ..userId = _userId.isEmpty ? uid : _userId;
 
     if (_documentId?.isEmpty ?? true) {
-      _repository.add(carteiraVacina);
+      _repository.add(banhoETosa);
     } else {
-      _repository.update(_documentId, carteiraVacina);
+      _repository.update(_documentId, banhoETosa);
     }
 
     return true;
@@ -204,6 +145,17 @@ aplicarRemedioPulgas
 
   @override
   void dispose() {
+    _codigoPetController.close();
+    _cpfController.close();
+    _emailController.close();
+    _generoController.close();
+    _dddCelularController.close();
+    _dddTelefoneController.close();
+    _cepController.close();
+    _enderecoController.close();
+    _estadoController.close();
+    _cidadeController.close();
+    _userIdController.close();
     super.dispose();
   }
 }
