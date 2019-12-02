@@ -34,6 +34,7 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
   TextEditingController _observacaoController;
   TextEditingController _valorController;
 
+  
   @override
   void initState() {
     _bloc.setBanhoETosa(widget.banhoETosa);
@@ -66,7 +67,7 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
 
   @override
   void dispose() {
-    _codigoPetController.dispose();
+ _codigoPetController.dispose();
     _codigoEmpresaPetshopController.dispose();
     _agendarDataHorarioController.dispose();
     _selecioneTipoServicoController.dispose();
@@ -96,86 +97,200 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
           padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: <Widget>[
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Codigo Empresa"),
-                  controller: _codigoEmpresaPetshopController,
-                  onChanged: _bloc.setCodigoEmpresaPetshop,
-                ),
+              Container(height: 20),
+              StreamBuilder<DateTime>(
+                stream: _bloc.outAgendarDataHorario,
+                initialData: DateTime.now(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) return Container();
+
+                  return InkWell(
+               //    onTap: () => _selectAgendarDataHorario(context, snapshot.data),
+                    child: InputDecorator(
+                      decoration:
+                          InputDecoration(labelText: "Agendar Data Horario"),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Text(_dateFormat.format(snapshot.data)),
+                          Icon(Icons.arrow_drop_down),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Codigo Pet"),
+                  decoration: InputDecoration(labelText: "Código Pet"),
                   controller: _codigoPetController,
                   onChanged: _bloc.setCodigoPet,
                 ),
               ),
+               Container(
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Codigo Empresa Petshop"),
+                  controller: _codigoEmpresaPetshopController,
+                  onChanged: _bloc.setCodigoEmpresaPetshop,
+                ),
+              ),
+
+
+              Container(height: 20),
+              StreamBuilder<DateTime>(
+                stream: _bloc.outDataAplicacao,
+                initialData: DateTime.now(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) return Container();
+
+                  return InkWell(
+                    onTap: () => _selectDataAplicacao(context, snapshot.data),
+                    child: InputDecorator(
+                      decoration:
+                          InputDecoration(labelText: "Data Aplicação"),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Text(_dateFormat.format(snapshot.data)),
+                          Icon(Icons.arrow_drop_down),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+              StreamBuilder<DateTime>(
+                stream: _bloc.outDataProximaAplicacao,
+                initialData: DateTime.now(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) return Container();
+
+                  return InkWell(
+                    onTap: () => _selectDataProximaAplicacao(context, snapshot.data),
+                    child: InputDecorator(
+                      decoration:
+                          InputDecoration(labelText: "Data Próxima Aplicação"),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Text(_dateFormat.format(snapshot.data)),
+                          Icon(Icons.arrow_drop_down),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+              Container(height: 20),
+              StreamBuilder(
+                stream: _bloc.outENecessarioRevacinar,
+                initialData: true,
+                builder: (context, snapshot) {
+                  return Column(
+                    children: <Widget>[
+                      Text(
+                        "Necessário Revacinar",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(),
+                      ),
+                      Center(
+                        child: Switch(
+                          value: snapshot.data,
+                          onChanged: _bloc.setENecessarioRevacinar,
+                        ),),],);
+                },
+              ),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Email"),
-                  controller: _emailController,
-                  onChanged: _bloc.setEmail,
+                  decoration: InputDecoration(labelText: "Fabricante"),
+                  controller: _fabricanteController,
+                  onChanged: _bloc.setFabricante,
                 ),
               ),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Gênero"),
-                  controller: _generoController,
-                  onChanged: _bloc.setGenero,
+                  decoration: InputDecoration(labelText: "Lembrete"),
+                  controller: _lembreteController,
+                  onChanged: _bloc.setLembrete,
                 ),
               ),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Celular com DDD"),
-                  controller: _dddCelularController,
-                  onChanged: _bloc.setDDDCelular,
+                  decoration: InputDecoration(labelText: "Nome Pet"),
+                  controller: _nomePetController,
+                  onChanged: _bloc.setNomePet,
                 ),
               ),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Telefone com DDD"),
-                  controller: _dddTelefoneController,
-                  onChanged: _bloc.setDDDTelefone,
+                  decoration: InputDecoration(labelText: "Observação"),
+                  controller: _observacaoController,
+                  onChanged: _bloc.setObservacao,
                 ),
               ),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "CEP"),
-                  controller: _cepController,
-                  onChanged: _bloc.setCep,
+                  decoration: InputDecoration(labelText: "Vacina"),
+                  controller: _vacinaController,
+                  onChanged: _bloc.setVacina,
+                ),
+              ),
+              Container(height: 20),
+              Container(
+                child: InputDecorator(
+                  decoration: InputDecoration(
+                    labelText: "Vacina",
+                  ),
+                  child: StreamBuilder<List<Vacinas>>(
+                    stream: _blocVacinas.vacinas,
+                    builder: (context, snapshotVacinas) {
+                      return snapshotVacinas.hasData
+                          ? DropdownButton<Vacinas>(
+                              value: _bloc.outVacinaId == null
+                                  ? snapshotVacinas.data.first
+                                  : getVacina(_bloc.outVacinaId),
+                              isExpanded: true,
+                              items: snapshotVacinas.data
+                                  .map<DropdownMenuItem<Vacinas>>(
+                                      (Vacinas vacinas) {
+                                return DropdownMenuItem<Vacinas>(
+                                  value: vacinas,
+                                  child: Text(vacinas.nome),
+                                );
+                              }).toList(),
+                              onChanged: (Vacinas vacinas) {
+                                _bloc.setVacinaId(vacinas.documentId());
+                              },
+                            )
+                          : CircularProgressIndicator();
+                    },
+                  ),
                 ),
               ),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Endereço"),
-                  controller: _enderecoController,
-                  onChanged: _bloc.setEndereco,
+                  decoration: InputDecoration(labelText: "Vermifugo Id"),
+                  controller: _vermifugoIdController,
+                  onChanged: _bloc.setVermifugoId,
                 ),
               ),
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Estado"),
-                  controller: _estadoController,
-                  onChanged: _bloc.setEstado,
+                  decoration: InputDecoration(labelText: "Vermifugos"),
+                  controller: _vermifugosController,
+                  onChanged: _bloc.setVermifugos,
                 ),
               ),
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Cidade"),
-                  controller: _cidadeController,
-                  onChanged: _bloc.setCidade,
-                ),
-              ),
+              //  int _peso;
               RaisedButton(
                   child: Text("Salvar"),
                   onPressed: () {
-                    FirebaseAuth.instance.currentUser().then((user) {
-                      if (_bloc.insertOrUpdate(user.uid.toString())) {
-                        Navigator.pop(context);
-                      }
-
-                      //_bloc.setUserId(user.uid);
-                    });
+                    if (_bloc.insertOrUpdate()) {
+                      Navigator.pop(context);
+                    }
                   }),
             ],
           ),
@@ -183,4 +298,46 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
       ),
     );
   }
+
+  getVacina(Stream<String> outVacinaId){
+    _blocVacinas.getVacinas(outVacinaId.toString());
+
+  }
+
+  Future _selectValidade(
+      BuildContext context, DateTime initialDate) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: initialDate,
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2101));
+    if (picked != null) {
+      _bloc.setValidade(picked);
+    }
+  }
+
+  Future _selectDataAplicacao(
+      BuildContext context, DateTime initialDate) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: initialDate,
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2101));
+    if (picked != null) {
+      _bloc.setDataAplicacao(picked);
+    }
+  }
+
+  Future _selectDataProximaAplicacao(
+      BuildContext context, DateTime initialDate) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: initialDate,
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2101));
+    if (picked != null) {
+      _bloc.setDataProximaAplicacao(picked);
+    }
+  }
+
 }

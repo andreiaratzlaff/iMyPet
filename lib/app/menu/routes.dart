@@ -11,6 +11,6 @@ class Rotas {
   static const String vacinas = VacinasPage.rota;
   static const String meusdados = MeusdadosPage.rota;
   static const String carteiraVacina = CarteiraVacinaPage.rota;
-   static const String pet = PetPage.rota;
-     static const String banhoETosa = BanhoETosaPage.rota;
+  static const String pet = PetPage.rota;
+  static const String banhoETosa = BanhoETosaPage.rota;
 }
