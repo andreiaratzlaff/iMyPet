@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iMyPet/app/pages/banhoETosa/banhoETosa_bloc.dart';
 import 'package:iMyPet/models/banhoETosa_model.dart';
+
 import 'package:intl/intl.dart';
 
 class BanhoETosaEditPage extends StatefulWidget {
@@ -135,209 +137,137 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
                   onChanged: _bloc.setCodigoEmpresaPetshop,
                 ),
               ),
-
-
-              Container(height: 20),
-              StreamBuilder<DateTime>(
-                stream: _bloc.outDataAplicacao,
-                initialData: DateTime.now(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) return Container();
-
-                  return InkWell(
-                    onTap: () => _selectDataAplicacao(context, snapshot.data),
-                    child: InputDecorator(
-                      decoration:
-                          InputDecoration(labelText: "Data Aplicação"),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text(_dateFormat.format(snapshot.data)),
-                          Icon(Icons.arrow_drop_down),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+Container(
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Selecione Tipo Servico"),
+                  controller: _selecioneTipoServicoController,
+                  onChanged: _bloc.setSelecioneTipoServico,
+                ),
               ),
-              StreamBuilder<DateTime>(
-                stream: _bloc.outDataProximaAplicacao,
-                initialData: DateTime.now(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) return Container();
 
-                  return InkWell(
-                    onTap: () => _selectDataProximaAplicacao(context, snapshot.data),
-                    child: InputDecorator(
-                      decoration:
-                          InputDecoration(labelText: "Data Próxima Aplicação"),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Text(_dateFormat.format(snapshot.data)),
-                          Icon(Icons.arrow_drop_down),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-              Container(height: 20),
+                Container(height: 20),
               StreamBuilder(
-                stream: _bloc.outENecessarioRevacinar,
+                stream: _bloc.outTosa,
                 initialData: true,
                 builder: (context, snapshot) {
                   return Column(
                     children: <Widget>[
                       Text(
-                        "Necessário Revacinar",
+                        "Tosa",
                         textAlign: TextAlign.start,
                         style: TextStyle(),
                       ),
-                      Center(
-                        child: Switch(
-                          value: snapshot.data,
-                          onChanged: _bloc.setENecessarioRevacinar,
-                        ),),],);
-                },
-              ),
-              Container(
+                      
+Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Fabricante"),
-                  controller: _fabricanteController,
-                  onChanged: _bloc.setFabricante,
+                  decoration: InputDecoration(labelText: "Informe Tipo Tosa"),
+                  controller: _informeTipoTosaController,
+                  onChanged: _bloc.setInformeTipoTosa,
                 ),
               ),
-              Container(
+Container(height: 20),
+              StreamBuilder(
+                stream: _bloc.outHidratacaoPelo,
+                initialData: true,
+                builder: (context, snapshot) {
+                  return Column(
+                    children: <Widget>[
+                      Text(
+                        "Hidratacao Pelo",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(),
+                      ),
+         Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Lembrete"),
-                  controller: _lembreteController,
-                  onChanged: _bloc.setLembrete,
+                  decoration: InputDecoration(labelText: "Tipo Hidratacao"),
+                  controller: _tipoHidratacaoController,
+                  onChanged: _bloc.setTipoHidratacao,
                 ),
               ),
-              Container(
+             Container(height: 20),
+              StreamBuilder(
+                stream: _bloc.outAplicarVermifugo,
+                initialData: true,
+                builder: (context, snapshot) {
+                  return Column(
+                    children: <Widget>[
+                      Text(
+                        "Aplicar Vermifugo",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(),
+                      ),
+
+             Container(height: 20),
+              StreamBuilder(
+                stream: _bloc.outTipoVermifugo,
+                initialData: true,
+                builder: (context, snapshot) {
+                  return Column(
+                    children: <Widget>[
+                      Text(
+                        "Tipo Vermifugo",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(),
+                      ),
+                      
+             Container(height: 20),
+              StreamBuilder(
+                stream: _bloc.outAplicarRemedioPulgas,
+                initialData: true,
+                builder: (context, snapshot) {
+                  return Column(
+                    children: <Widget>[
+                      Text(
+                        "Aplicar Remedio Pulgas",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(),
+                      ),
+Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Nome Pet"),
-                  controller: _nomePetController,
-                  onChanged: _bloc.setNomePet,
+                  decoration: InputDecoration(labelText: "Tipo Remedio Pulga"),
+                  controller: _tipoRemedioPulgaController,
+                  onChanged: _bloc.setTipoRemedioPulga,
                 ),
               ),
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Observação"),
+
+                Container(height: 20),
+              StreamBuilder(
+                stream: _bloc.outTelebusca,
+                initialData: true,
+                builder: (context, snapshot) {
+                  return Column(
+                    children: <Widget>[
+                      Text(
+                        "Telebusca",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(),
+                      ),
+               Container(
+                  child: TextField(
+                  decoration: InputDecoration(labelText: "Informe Local de Busca e Entrega"),
+                  controller: _informeLocalDeBuscaeEntregaController,
+                  onChanged: _bloc.setInformeLocalDeBuscaeEntrega,
+                ),
+              ),
+
+               Container(
+                  child: TextField(
+                  decoration: InputDecoration(labelText: "Observacao"),
                   controller: _observacaoController,
                   onChanged: _bloc.setObservacao,
-                ),
-              ),
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Vacina"),
-                  controller: _vacinaController,
-                  onChanged: _bloc.setVacina,
-                ),
-              ),
-              Container(height: 20),
-              Container(
-                child: InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: "Vacina",
-                  ),
-                  child: StreamBuilder<List<Vacinas>>(
-                    stream: _blocVacinas.vacinas,
-                    builder: (context, snapshotVacinas) {
-                      return snapshotVacinas.hasData
-                          ? DropdownButton<Vacinas>(
-                              value: _bloc.outVacinaId == null
-                                  ? snapshotVacinas.data.first
-                                  : getVacina(_bloc.outVacinaId),
-                              isExpanded: true,
-                              items: snapshotVacinas.data
-                                  .map<DropdownMenuItem<Vacinas>>(
-                                      (Vacinas vacinas) {
-                                return DropdownMenuItem<Vacinas>(
-                                  value: vacinas,
-                                  child: Text(vacinas.nome),
-                                );
-                              }).toList(),
-                              onChanged: (Vacinas vacinas) {
-                                _bloc.setVacinaId(vacinas.documentId());
-                              },
-                            )
-                          : CircularProgressIndicator();
-                    },
-                  ),
-                ),
-              ),
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Vermifugo Id"),
-                  controller: _vermifugoIdController,
-                  onChanged: _bloc.setVermifugoId,
-                ),
-              ),
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Vermifugos"),
-                  controller: _vermifugosController,
-                  onChanged: _bloc.setVermifugos,
-                ),
-              ),
-              //  int _peso;
+               ),             
+               ),
+
+                  //  int _peso;
               RaisedButton(
                   child: Text("Salvar"),
                   onPressed: () {
                     if (_bloc.insertOrUpdate()) {
                       Navigator.pop(context);
-                    }
+                     }
                   }),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  getVacina(Stream<String> outVacinaId){
-    _blocVacinas.getVacinas(outVacinaId.toString());
-
-  }
-
-  Future _selectValidade(
-      BuildContext context, DateTime initialDate) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: initialDate,
-        firstDate: DateTime(1900),
-        lastDate: DateTime(2101));
-    if (picked != null) {
-      _bloc.setValidade(picked);
-    }
-  }
-
-  Future _selectDataAplicacao(
-      BuildContext context, DateTime initialDate) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: initialDate,
-        firstDate: DateTime(1900),
-        lastDate: DateTime(2101));
-    if (picked != null) {
-      _bloc.setDataAplicacao(picked);
-    }
-  }
-
-  Future _selectDataProximaAplicacao(
-      BuildContext context, DateTime initialDate) async {
-    final DateTime picked = await showDatePicker(
-        context: context,
-        initialDate: initialDate,
-        firstDate: DateTime(1900),
-        lastDate: DateTime(2101));
-    if (picked != null) {
-      _bloc.setDataProximaAplicacao(picked);
-    }
-  }
-
-}
+          );
+                },
+  
+                  
