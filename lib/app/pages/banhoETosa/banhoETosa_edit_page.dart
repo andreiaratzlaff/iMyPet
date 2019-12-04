@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iMyPet/app/pages/banhoETosa/banhoETosa_bloc.dart';
 import 'package:iMyPet/models/banhoETosa_model.dart';
@@ -99,7 +98,22 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
           padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: <Widget>[
-              Container(height: 20),
+              Container(
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Codigo Pet"),
+                  controller: _codigoPetController,
+                  onChanged: _bloc.setCodigoPet,
+                ),
+              ),
+              Container(
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Código Empresa"),
+                  controller: _codigoEmpresaPetshopController,
+                  onChanged: _bloc.setCodigoEmpresaPetshop,
+                ),
+              ),
+
+             Container(height: 20),
               StreamBuilder<DateTime>(
                 stream: _bloc.outAgendarDataHorario,
                 initialData: DateTime.now(),
@@ -107,7 +121,7 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
                   if (!snapshot.hasData) return Container();
 
                   return InkWell(
-               //    onTap: () => _selectAgendarDataHorario(context, snapshot.data),
+                  //  onTap: () => _selectagendarDataHorario(context, snapshot.data),
                     child: InputDecorator(
                       decoration:
                           InputDecoration(labelText: "Agendar Data Horario"),
@@ -123,21 +137,8 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
                   );
                 },
               ),
+
               Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Código Pet"),
-                  controller: _codigoPetController,
-                  onChanged: _bloc.setCodigoPet,
-                ),
-              ),
-               Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Codigo Empresa Petshop"),
-                  controller: _codigoEmpresaPetshopController,
-                  onChanged: _bloc.setCodigoEmpresaPetshop,
-                ),
-              ),
-Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Selecione Tipo Servico"),
                   controller: _selecioneTipoServicoController,
@@ -145,7 +146,7 @@ Container(
                 ),
               ),
 
-                Container(height: 20),
+              Container(height: 20),
               StreamBuilder(
                 stream: _bloc.outTosa,
                 initialData: true,
@@ -157,8 +158,15 @@ Container(
                         textAlign: TextAlign.start,
                         style: TextStyle(),
                       ),
-                      
-Container(
+                      Center(
+                        child: Switch(
+                          value: snapshot.data,
+                          onChanged: _bloc.setTosa,
+                        ),),],);
+                },
+              ),
+
+              Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Informe Tipo Tosa"),
                   controller: _informeTipoTosaController,
@@ -177,14 +185,23 @@ Container(height: 20),
                         textAlign: TextAlign.start,
                         style: TextStyle(),
                       ),
-         Container(
+                      Center(
+                        child: Switch(
+                          value: snapshot.data,
+                          onChanged: _bloc.setHidratacaoPelo,
+                        ),),],);
+                },
+              ),
+
+              Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Tipo Hidratacao"),
                   controller: _tipoHidratacaoController,
                   onChanged: _bloc.setTipoHidratacao,
                 ),
               ),
-             Container(height: 20),
+
+              Container(height: 20),
               StreamBuilder(
                 stream: _bloc.outAplicarVermifugo,
                 initialData: true,
@@ -196,21 +213,22 @@ Container(height: 20),
                         textAlign: TextAlign.start,
                         style: TextStyle(),
                       ),
+                      Center(
+                        child: Switch(
+                          value: snapshot.data,
+                          onChanged: _bloc.setAplicarVermifugo,
+                        ),),],);
+                },
+              ),
 
-             Container(height: 20),
-              StreamBuilder(
-                stream: _bloc.outTipoVermifugo,
-                initialData: true,
-                builder: (context, snapshot) {
-                  return Column(
-                    children: <Widget>[
-                      Text(
-                        "Tipo Vermifugo",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(),
-                      ),
-                      
-             Container(height: 20),
+             Container(
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Tipo Hidratacao"),
+                  controller: _tipoVermifugoController,
+                  onChanged: _bloc.setTipoVermifugo,
+                ),
+              ),
+Container(height: 20),
               StreamBuilder(
                 stream: _bloc.outAplicarRemedioPulgas,
                 initialData: true,
@@ -222,7 +240,15 @@ Container(height: 20),
                         textAlign: TextAlign.start,
                         style: TextStyle(),
                       ),
-Container(
+                      Center(
+                        child: Switch(
+                          value: snapshot.data,
+                          onChanged: _bloc.setAplicarRemedioPulgas,
+                        ),),],);
+                },
+              ),
+              
+              Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Tipo Remedio Pulga"),
                   controller: _tipoRemedioPulgaController,
@@ -230,7 +256,7 @@ Container(
                 ),
               ),
 
-                Container(height: 20),
+              Container(height: 20),
               StreamBuilder(
                 stream: _bloc.outTelebusca,
                 initialData: true,
@@ -242,32 +268,48 @@ Container(
                         textAlign: TextAlign.start,
                         style: TextStyle(),
                       ),
-               Container(
-                  child: TextField(
-                  decoration: InputDecoration(labelText: "Informe Local de Busca e Entrega"),
+                      Center(
+                        child: Switch(
+                          value: snapshot.data,
+                          onChanged: _bloc.setTelebusca,
+                        ),),],);
+                },
+              ),
+
+              Container(
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Informe local de busca e entrega"),
                   controller: _informeLocalDeBuscaeEntregaController,
                   onChanged: _bloc.setInformeLocalDeBuscaeEntrega,
                 ),
               ),
-
-               Container(
-                  child: TextField(
+       Container(
+                child: TextField(
                   decoration: InputDecoration(labelText: "Observacao"),
                   controller: _observacaoController,
                   onChanged: _bloc.setObservacao,
-               ),             
-               ),
+                ),
+              ),
+//Container(
+      //          child: TextField(
+        //          decoration: InputDecoration(labelText: "Valor"),
+       //           controller: _valorController,
+       //           onChanged: _bloc.setValor,
+      //          ),
+     //     ),
 
-                  //  int _peso;
-              RaisedButton(
+     RaisedButton(
                   child: Text("Salvar"),
                   onPressed: () {
                     if (_bloc.insertOrUpdate()) {
                       Navigator.pop(context);
-                     }
+                    }
                   }),
-            ],
-          );
-                },
-  
-                  
+              
+              ],
+          ),
+        ),
+      ),
+    );
+  }
+}
