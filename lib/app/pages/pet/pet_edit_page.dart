@@ -90,8 +90,7 @@ class _PetEditPageState extends State<PetEditPage> {
                     ),
                   ),
 
-                 
-               Container(height: 20),
+              Container(height: 20),
               Container(
                 child: InputDecorator(
                   decoration: InputDecoration(
@@ -135,6 +134,32 @@ class _PetEditPageState extends State<PetEditPage> {
                       onChanged: _bloc.setPelagem,
                     ),
                   ),
+
+                  Container(height: 20),
+              StreamBuilder<DateTime>(
+                stream: _bloc.outDataNascimento,
+                initialData: DateTime.now(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) return Container();
+
+                  return InkWell(
+                    onTap: () => _selectDataNascimento(context, snapshot.data),
+                    child: InputDecorator(
+                      decoration:
+                          InputDecoration(labelText: "Data de Nascimento"),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                        //  Text(_dateFormat.format(snapshot.data)),
+                          Icon(Icons.arrow_drop_down),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+               
                   
                   Container(
                     child: TextField(
@@ -166,3 +191,14 @@ class _PetEditPageState extends State<PetEditPage> {
     );
   }
 }
+ Future _selectDataNascimento(
+      BuildContext context, DateTime initialDate) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: initialDate,
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2101));
+    if (picked != null) {
+    //  _bloc.setDataNascimento(picked);
+    }
+  }
