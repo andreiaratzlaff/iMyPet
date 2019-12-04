@@ -49,6 +49,7 @@ class _PetEditPageState extends State<PetEditPage> {
     _especieController.dispose();
     _nomeController.dispose();
     _corController.dispose();
+     _pesoController.dispose();
     _sexoController.dispose();
     _pelagemController.dispose();
     _castradoController.dispose();
@@ -89,14 +90,44 @@ class _PetEditPageState extends State<PetEditPage> {
                     ),
                   ),
 
-                  
-                  Container(
-                    child: TextField(
-                      decoration: InputDecoration(labelText: "Sexo"),
-                      controller: _sexoController,
-                      onChanged: _bloc.setSexo,
-                    ),
+                 
+               Container(height: 20),
+              Container(
+                child: InputDecorator(
+                  decoration: InputDecoration(
+                    labelText: "Sexo",
                   ),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        title: const Text('Masculino'),
+                        leading: Radio(
+                          value: 'M',
+                          groupValue: _bloc.outSexo,
+                          onChanged: (value) {
+                            setState(() {
+                              _bloc.setSexo(value);
+                            });
+                          },
+                        ),
+                      ),
+                      ListTile(
+                        title: const Text('Femino'),
+                        leading: Radio(
+                          value: 'F',
+                          groupValue: _bloc.outSexo,
+                          onChanged: (value) {
+                            setState(() {
+                              _bloc.setSexo(value);
+                            });
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
                   Container(
                     child: TextField(
                       decoration: InputDecoration(labelText: "Pelagem"),

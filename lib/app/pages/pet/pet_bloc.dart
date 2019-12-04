@@ -107,8 +107,18 @@ class PetBloc extends BlocBase {
 
   void delete(String documentId) => _repository.delete(documentId);
 
-  @override
+   @override
   void dispose() {
+    _codigoPetController.close();
+    _nomeController.close();
+    _corController.close();
+    _pesoController.close();
+    _dataNascimentoController.close();
+    _sexoController.close();
+    _pelagemController.close();
+    _observacaoController.close();
     super.dispose();
   }
 }
+
+

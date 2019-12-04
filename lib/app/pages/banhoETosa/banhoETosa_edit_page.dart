@@ -112,8 +112,7 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
                   onChanged: _bloc.setCodigoEmpresaPetshop,
                 ),
               ),
-
-             Container(height: 20),
+Container(height: 20),
               StreamBuilder<DateTime>(
                 stream: _bloc.outAgendarDataHorario,
                 initialData: DateTime.now(),
@@ -121,7 +120,7 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
                   if (!snapshot.hasData) return Container();
 
                   return InkWell(
-                  //  onTap: () => _selectagendarDataHorario(context, snapshot.data),
+                    onTap: () => _selectAgendarDataHorario(context, snapshot.data),
                     child: InputDecorator(
                       decoration:
                           InputDecoration(labelText: "Agendar Data Horario"),
@@ -138,7 +137,7 @@ class _BanhoETosaEditPageState extends State<BanhoETosaEditPage> {
                 },
               ),
 
-              Container(
+               Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Selecione Tipo Servico"),
                   controller: _selecioneTipoServicoController,
@@ -228,7 +227,8 @@ Container(height: 20),
                   onChanged: _bloc.setTipoVermifugo,
                 ),
               ),
-Container(height: 20),
+
+            Container(height: 20),
               StreamBuilder(
                 stream: _bloc.outAplicarRemedioPulgas,
                 initialData: true,
@@ -313,3 +313,14 @@ Container(height: 20),
     );
   }
 }
+Future _selectAgendarDataHorario(
+      BuildContext context, DateTime initialDate) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: initialDate,
+        firstDate: DateTime(1900),
+        lastDate: DateTime(2101));
+    if (picked != null) {
+     // _bloc.setAgendarDataHorario(picked);
+    }
+  }
