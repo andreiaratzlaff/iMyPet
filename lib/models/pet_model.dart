@@ -14,21 +14,26 @@ class Pet extends ModeloBase {
   String pelagem;
   String castrado;
   String observacao;
+  String raca_id;
 
 
   Pet();
 
   Pet.fromMap(DocumentSnapshot documento) {
     _documentId = documento.documentID;
-    this.especie = documento.data["especie"];
+    this.especie = documento.data["especie"]; 
     this.nome = documento.data["nome"];
     this.cor = documento.data["cor"];
     this.peso = documento.data["peso"];
-    this.dataNascimento = documento.data["dataNascimento"];
+
+    Timestamp ts = documento.data["dataNascimento"];
+
+    this.dataNascimento = DateTime.fromMillisecondsSinceEpoch(ts.millisecondsSinceEpoch);
     this.sexo = documento.data["sexo"];
     this.pelagem = documento.data["pelagem"];
     this.castrado = documento.data["castrado"];
     this.observacao = documento.data["observacao"];
+    this.raca_id = documento.data["raca_id"];
   }
 
   @override

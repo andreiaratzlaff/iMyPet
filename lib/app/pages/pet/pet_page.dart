@@ -35,7 +35,8 @@ class _PetPageState extends State<PetPage> {
             ..dataNascimento = DateTime.now() 
             ..sexo = ""
             ..pelagem = ""
-            ..observacao = "";
+            ..observacao = ""
+            ..raca_id = "";
 
           Navigator.push(
             context,

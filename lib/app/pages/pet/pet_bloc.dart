@@ -10,7 +10,6 @@ class PetBloc extends BlocBase {
   get pet => _repository.pet;
 
   // PetEdit
-  String _codigoPet;
   String _documentId;
   String _especie;
   String _nome;
@@ -20,10 +19,11 @@ class PetBloc extends BlocBase {
   String _sexo;
   String _pelagem;
   String _observacao;
+  String _racaId;
   String  _userId;
 
   PetBloc() {
-    _codigoPetController.listen((value) => _codigoPet = value);
+    _racaIdController.listen((value) => _racaId = value);
     _especieController.listen((value) => _especie = value);
     _nomeController.listen((value) => _nome = value);
     _corController.listen((value) => _cor = value);
@@ -44,11 +44,12 @@ class PetBloc extends BlocBase {
     setSexo(pet.sexo);
     setPelagem(pet.pelagem);
     setObservacao(pet.observacao);
+    setRacaId(pet.raca_id);
   }
 
-  var _codigoPetController = BehaviorSubject<String>();
-  Stream<String> get outCodigoPet => _codigoPetController.stream;
-  void setCodigoPet(String valor) => _codigoPetController.sink.add(valor);
+  var _racaIdController = BehaviorSubject<String>();
+  Stream<String> get outCodigoPet => _racaIdController.stream;
+  void setRacaId(String valor) => _racaIdController.sink.add(valor);
 
   var _especieController = BehaviorSubject<String>();
   Stream<String> get outEspecie => _especieController.stream;
@@ -73,6 +74,7 @@ class PetBloc extends BlocBase {
 
   var _sexoController = BehaviorSubject<String>(); 
   Stream<String> get outSexo => _sexoController.stream;
+  String get outSexoValue => _sexoController.stream.value;
   void setSexo(String valor) => _sexoController.sink.add(valor);
 
   var _pelagemController = BehaviorSubject<String>();
@@ -85,7 +87,7 @@ class PetBloc extends BlocBase {
 
   bool insertOrUpdate() {
     var pet = Pet()
-     // ..codigoPet = _codigoPet
+      ..raca_id = _racaId
       ..especie = _especie
       ..nome = _nome
       ..cor = _cor
@@ -109,7 +111,7 @@ class PetBloc extends BlocBase {
 
    @override
   void dispose() {
-    _codigoPetController.close();
+    _racaIdController.close();
     _nomeController.close();
     _corController.close();
     _pesoController.close();
