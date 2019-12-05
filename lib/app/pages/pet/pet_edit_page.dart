@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:iMyPet/app/pages/especie/especie_bloc.dart';
 import 'package:iMyPet/app/pages/pet/pet_bloc.dart';
+import 'package:iMyPet/app/pages/raca/raca_bloc.dart';
 import 'package:iMyPet/models/especie_model.dart';
 import 'package:iMyPet/models/pet_model.dart';
 import 'package:iMyPet/models/raca_model.dart';
@@ -16,11 +18,11 @@ class PetEditPage extends StatefulWidget {
 
 class _PetEditPageState extends State<PetEditPage> {
   final _bloc = PetBloc();
-  //final _blocPet = PetBloc();
+  final _blocEspecie = EspecieBloc();
+  final _blocRaca = RacaBloc();
+
   final _dateFormat = DateFormat("dd/MM/yyyy");
-  TextEditingController _especieController;
   TextEditingController _nomeController;
-  TextEditingController _racaIDController;
   TextEditingController _corController;
   TextEditingController _pesoController;
   TextEditingController _sexoController;
@@ -32,11 +34,7 @@ class _PetEditPageState extends State<PetEditPage> {
   void initState() {
     _bloc.setPet(widget.pet);
 
-    // _codigoPetController = TextEditingController(text: widget.pet.codigoPet);
-    //_cogigoPetController = TextEditingController(text: widget.pet.especie);
-    _especieController = TextEditingController(text: widget.pet.especie);
     _nomeController = TextEditingController(text: widget.pet.nome);
-     _racaIDController = TextEditingController(text: widget.pet.racaId);
     _corController = TextEditingController(text: widget.pet.cor);
     _sexoController = TextEditingController(text: widget.pet.sexo);
     _pelagemController = TextEditingController(text: widget.pet.pelagem);
@@ -49,7 +47,6 @@ class _PetEditPageState extends State<PetEditPage> {
   @override
   void dispose() {
     //  _codigoPetController.dispose();
-    _especieController.dispose();
     _nomeController.dispose();
     _corController.dispose();
     _pesoController.dispose();
@@ -57,7 +54,7 @@ class _PetEditPageState extends State<PetEditPage> {
     _pelagemController.dispose();
     _castradoController.dispose();
     _observacaoController.dispose();
-     super.dispose();
+    super.dispose();
   }
 
   @override
@@ -72,14 +69,6 @@ class _PetEditPageState extends State<PetEditPage> {
           child: ListView(
             children: <Widget>[
               Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Especie"),
-                  controller: _especieController,
-                  onChanged: _bloc.setEspecie,
-                ),
-              ),
-              Container(height: 20),
-              Container(
                 child: InputDecorator(
                   decoration: InputDecoration(
                     labelText: "Especie",
@@ -87,22 +76,26 @@ class _PetEditPageState extends State<PetEditPage> {
                   child: StreamBuilder<List<Especie>>(
                     stream: _blocEspecie.especie,
                     builder: (context, snapshotEspecie) {
+                      var _especieId = _bloc.outEspecieValue;
+
                       return snapshotEspecie.hasData
-                          ? DropdownButton<Especie>(
-                              value: _bloc.outEspecieId == null
-                                  ? snapshotEspecie.data.first
-                                  : getEspecie(_bloc.outEspecieId),
+                          ? DropdownButton<String>(
+                              value: _especieId,
                               isExpanded: true,
                               items: snapshotEspecie.data
-                                  .map<DropdownMenuItem<Especie>>(
+                                  .map<DropdownMenuItem<String>>(
                                       (Especie especie) {
-                                return DropdownMenuItem<Especie>(
-                                  value: especie,
+                                return DropdownMenuItem<String>(
+                                  value: especie.documentId(),
                                   child: Text(especie.nome),
                                 );
                               }).toList(),
-                              onChanged: (Especie especie) {
-                                _bloc.setEspecieId(especie.documentId());
+                              onChanged: (String especieId) {
+                                setState(() {
+                                  _especieId = especieId;
+                                  _bloc.setEspecie(especieId);
+                                }
+                                );
                               },
                             )
                           : CircularProgressIndicator();
@@ -117,13 +110,6 @@ class _PetEditPageState extends State<PetEditPage> {
                   onChanged: _bloc.setNome,
                 ),
               ),
-Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Raca"),
-                  controller: _racaController,
-                  onChanged: _bloc.setRaca,
-                ),
-              ),
               Container(height: 20),
               Container(
                 child: InputDecorator(
@@ -133,22 +119,24 @@ Container(
                   child: StreamBuilder<List<Raca>>(
                     stream: _blocRaca.raca,
                     builder: (context, snapshotRaca) {
+                      var _racaId = _bloc.outRacaIdValue;
+
                       return snapshotRaca.hasData
-                          ? DropdownButton<Raca>(
-                              value: _bloc.outRacaId == null
-                                  ? snapshotRaca.data.first
-                                  : getRaca(_bloc.outRacaId),
+                          ? DropdownButton<String>(
+                              value:_racaId,
                               isExpanded: true,
                               items: snapshotRaca.data
-                                  .map<DropdownMenuItem<Raca>>(
-                                      (Raca raca) {
-                                return DropdownMenuItem<raca>(
-                                  value: raca,
+                                  .map<DropdownMenuItem<String>>((Raca raca) {
+                                return DropdownMenuItem<String>(
+                                  value: raca.documentId(),
                                   child: Text(raca.nomeRaca),
                                 );
                               }).toList(),
-                              onChanged: (Raca raca) {
-                                _bloc.setRacaId(raca.documentId());
+                              onChanged: (String racaId) {
+                                setState((){
+                                  _racaId = racaId;
+                                  _bloc.setRacaId(racaId);
+                                });
                               },
                             )
                           : CircularProgressIndicator();
@@ -156,7 +144,6 @@ Container(
                   ),
                 ),
               ),
-              
               Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Cor"),

@@ -45,22 +45,23 @@ class PetBloc extends BlocBase {
     setSexo(pet.sexo);
     setPelagem(pet.pelagem);
     setObservacao(pet.observacao);
+    setRacaId(pet.racaId);
     
   }
 
   var _racaIdController = BehaviorSubject<String>();
-  Stream<String> get outCodigoPet => _racaIdController.stream;
+  Stream<String> get outRacaId => _racaIdController.stream;
+  String get outRacaIdValue => _racaIdController.stream.value;
   void setRacaId(String valor) => _racaIdController.sink.add(valor);
 
   var _especieController = BehaviorSubject<String>();
   Stream<String> get outEspecie => _especieController.stream;
+  String get outEspecieValue => _especieController.stream.value;
   void setEspecie(String valor) => _especieController.sink.add(valor);
 
   var _nomeController = BehaviorSubject<String>();
   Stream<String> get outNome => _nomeController.stream;
   void setNome(String valor) => _nomeController.sink.add(valor);
-
-
 
   var _corController = BehaviorSubject<String>();
   Stream<String> get outCor => _corController.stream;
