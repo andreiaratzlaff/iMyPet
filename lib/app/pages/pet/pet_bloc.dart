@@ -23,9 +23,9 @@ class PetBloc extends BlocBase {
   String  _userId;
 
   PetBloc() {
-    _racaIdController.listen((value) => _racaId = value);
     _especieController.listen((value) => _especie = value);
     _nomeController.listen((value) => _nome = value);
+    _racaIdController.listen((value) => _racaId = value);
     _corController.listen((value) => _cor = value);
     _pesoController.listen((value) => _peso = value);
     _dataNascimentoController.listen((value) => _dataNascimento = value);
@@ -38,13 +38,14 @@ class PetBloc extends BlocBase {
     _documentId = pet.documentId();
     setEspecie(pet.especie);
     setNome(pet.nome);
+    setRacaId(pet.racaId);
     setCor(pet.cor);
     setPeso(pet.peso);
     setDataNascimento(pet.dataNascimento);
     setSexo(pet.sexo);
     setPelagem(pet.pelagem);
     setObservacao(pet.observacao);
-    setRacaId(pet.raca_id);
+    
   }
 
   var _racaIdController = BehaviorSubject<String>();
@@ -58,6 +59,8 @@ class PetBloc extends BlocBase {
   var _nomeController = BehaviorSubject<String>();
   Stream<String> get outNome => _nomeController.stream;
   void setNome(String valor) => _nomeController.sink.add(valor);
+
+
 
   var _corController = BehaviorSubject<String>();
   Stream<String> get outCor => _corController.stream;
@@ -87,7 +90,7 @@ class PetBloc extends BlocBase {
 
   bool insertOrUpdate() {
     var pet = Pet()
-      ..raca_id = _racaId
+      ..racaId = _racaId
       ..especie = _especie
       ..nome = _nome
       ..cor = _cor
@@ -113,6 +116,7 @@ class PetBloc extends BlocBase {
   void dispose() {
     _racaIdController.close();
     _nomeController.close();
+    _especieController.close();
     _corController.close();
     _pesoController.close();
     _dataNascimentoController.close();

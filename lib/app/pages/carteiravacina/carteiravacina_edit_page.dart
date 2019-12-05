@@ -66,7 +66,7 @@ class _CarteiraVacinaEditPageState extends State<CarteiraVacinaEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("PetVac"),
+        title: Text("Carteira de Vacina"),
       ),
       body: Container(
         child: Padding(

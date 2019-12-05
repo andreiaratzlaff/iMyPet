@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iMyPet/app/pages/pet/pet_bloc.dart';
+import 'package:iMyPet/models/especie_model.dart';
 import 'package:iMyPet/models/pet_model.dart';
+import 'package:iMyPet/models/raca_model.dart';
 import 'package:intl/intl.dart';
 
 class PetEditPage extends StatefulWidget {
@@ -18,6 +20,7 @@ class _PetEditPageState extends State<PetEditPage> {
   final _dateFormat = DateFormat("dd/MM/yyyy");
   TextEditingController _especieController;
   TextEditingController _nomeController;
+  TextEditingController _racaIDController;
   TextEditingController _corController;
   TextEditingController _pesoController;
   TextEditingController _sexoController;
@@ -33,6 +36,7 @@ class _PetEditPageState extends State<PetEditPage> {
     //_cogigoPetController = TextEditingController(text: widget.pet.especie);
     _especieController = TextEditingController(text: widget.pet.especie);
     _nomeController = TextEditingController(text: widget.pet.nome);
+     _racaIDController = TextEditingController(text: widget.pet.racaId);
     _corController = TextEditingController(text: widget.pet.cor);
     _sexoController = TextEditingController(text: widget.pet.sexo);
     _pelagemController = TextEditingController(text: widget.pet.pelagem);
@@ -53,7 +57,7 @@ class _PetEditPageState extends State<PetEditPage> {
     _pelagemController.dispose();
     _castradoController.dispose();
     _observacaoController.dispose();
-    super.dispose();
+     super.dispose();
   }
 
   @override
@@ -74,6 +78,38 @@ class _PetEditPageState extends State<PetEditPage> {
                   onChanged: _bloc.setEspecie,
                 ),
               ),
+              Container(height: 20),
+              Container(
+                child: InputDecorator(
+                  decoration: InputDecoration(
+                    labelText: "Especie",
+                  ),
+                  child: StreamBuilder<List<Especie>>(
+                    stream: _blocEspecie.especie,
+                    builder: (context, snapshotEspecie) {
+                      return snapshotEspecie.hasData
+                          ? DropdownButton<Especie>(
+                              value: _bloc.outEspecieId == null
+                                  ? snapshotEspecie.data.first
+                                  : getEspecie(_bloc.outEspecieId),
+                              isExpanded: true,
+                              items: snapshotEspecie.data
+                                  .map<DropdownMenuItem<Especie>>(
+                                      (Especie especie) {
+                                return DropdownMenuItem<Especie>(
+                                  value: especie,
+                                  child: Text(especie.nome),
+                                );
+                              }).toList(),
+                              onChanged: (Especie especie) {
+                                _bloc.setEspecieId(especie.documentId());
+                              },
+                            )
+                          : CircularProgressIndicator();
+                    },
+                  ),
+                ),
+              ),
               Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Nome"),
@@ -81,6 +117,46 @@ class _PetEditPageState extends State<PetEditPage> {
                   onChanged: _bloc.setNome,
                 ),
               ),
+Container(
+                child: TextField(
+                  decoration: InputDecoration(labelText: "Raca"),
+                  controller: _racaController,
+                  onChanged: _bloc.setRaca,
+                ),
+              ),
+              Container(height: 20),
+              Container(
+                child: InputDecorator(
+                  decoration: InputDecoration(
+                    labelText: "Raca",
+                  ),
+                  child: StreamBuilder<List<Raca>>(
+                    stream: _blocRaca.raca,
+                    builder: (context, snapshotRaca) {
+                      return snapshotRaca.hasData
+                          ? DropdownButton<Raca>(
+                              value: _bloc.outRacaId == null
+                                  ? snapshotRaca.data.first
+                                  : getRaca(_bloc.outRacaId),
+                              isExpanded: true,
+                              items: snapshotRaca.data
+                                  .map<DropdownMenuItem<Raca>>(
+                                      (Raca raca) {
+                                return DropdownMenuItem<raca>(
+                                  value: raca,
+                                  child: Text(raca.nomeRaca),
+                                );
+                              }).toList(),
+                              onChanged: (Raca raca) {
+                                _bloc.setRacaId(raca.documentId());
+                              },
+                            )
+                          : CircularProgressIndicator();
+                    },
+                  ),
+                ),
+              ),
+              
               Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Cor"),

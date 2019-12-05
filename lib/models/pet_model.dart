@@ -14,7 +14,7 @@ class Pet extends ModeloBase {
   String pelagem;
   String castrado;
   String observacao;
-  String raca_id;
+  String racaId;
 
 
   Pet();
@@ -23,6 +23,7 @@ class Pet extends ModeloBase {
     _documentId = documento.documentID;
     this.especie = documento.data["especie"]; 
     this.nome = documento.data["nome"];
+    this.racaId = documento.data["racaId"];
     this.cor = documento.data["cor"];
     this.peso = documento.data["peso"];
 
@@ -33,7 +34,7 @@ class Pet extends ModeloBase {
     this.pelagem = documento.data["pelagem"];
     this.castrado = documento.data["castrado"];
     this.observacao = documento.data["observacao"];
-    this.raca_id = documento.data["raca_id"];
+   
   }
 
   @override
@@ -41,6 +42,7 @@ class Pet extends ModeloBase {
     var map = new Map<String, dynamic>();
     map['especie'] = this.especie;
     map['nome'] = this.nome;
+    map['racaId'] = this.racaId;
     map['cor'] = this.cor;
     map['peso'] = this.peso;
     map['dataNascimento'] = this.dataNascimento;

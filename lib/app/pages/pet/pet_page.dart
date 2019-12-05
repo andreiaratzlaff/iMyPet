@@ -30,13 +30,13 @@ class _PetPageState extends State<PetPage> {
           var pet = Pet()
             ..especie = ""
             ..nome = ""
+            ..racaId = ""
             ..cor = ""
             ..peso = 0.0
             ..dataNascimento = DateTime.now() 
             ..sexo = ""
             ..pelagem = ""
-            ..observacao = ""
-            ..raca_id = "";
+            ..observacao = "";
 
           Navigator.push(
             context,

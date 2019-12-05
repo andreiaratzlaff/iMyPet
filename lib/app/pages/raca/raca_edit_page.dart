@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:iMyPet/app/pages/vacinas/vacinas_bloc.dart';
-import 'package:iMyPet/models/vacinas_model.dart';
+import 'package:iMyPet/app/pages/raca/raca_bloc.dart';
+import 'package:iMyPet/models/raca_model.dart';
 
-class VacinasEditPage extends StatefulWidget {
-  VacinasEditPage(this.vacinas);
+class RacaEditPage extends StatefulWidget {
+  RacaEditPage(this.raca);
 
-  final Vacinas vacinas;
+  final Raca raca;
 
   @override
-  _VacinasEditPageState createState() => _VacinasEditPageState();
+  _RacaEditPageState createState() => _RacaEditPageState();
 }
 
-class _VacinasEditPageState extends State<VacinasEditPage> {
-  TextEditingController _nomeController;
-  final _bloc = VacinasBloc();
+class _RacaEditPageState extends State<RacaEditPage> {
+  TextEditingController _nomeRacaController;
+  final _bloc = RacaBloc();
 
   @override
   void initState() {
-    _bloc.setVacinas(widget.vacinas);
-    _nomeController = TextEditingController(text: widget.vacinas.nome);
+    _bloc.setRaca(widget.raca);
+    _nomeRacaController = TextEditingController(text: widget.raca.nomeRaca);
     super.initState();
   }
 
   @override
   void dispose() {
-    _nomeController.dispose();
+    _nomeRacaController.dispose();
     super.dispose();
   }
 
@@ -32,7 +32,7 @@ class _VacinasEditPageState extends State<VacinasEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Vacinas"),
+        title: Text("Raca"),
       ),
       body: Container(
         child: Padding(
@@ -41,9 +41,9 @@ class _VacinasEditPageState extends State<VacinasEditPage> {
             children: <Widget>[
               Container(
                 child: TextField(
-                  decoration: InputDecoration(labelText: "Nome"),
-                  controller: _nomeController,
-                  onChanged: _bloc.setNome,
+                  decoration: InputDecoration(labelText: "Raca"),
+                  controller: _nomeRacaController,
+                  onChanged: _bloc.setNomeRaca,
                 ),
               ),
               RaisedButton(

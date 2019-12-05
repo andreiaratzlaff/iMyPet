@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:iMyPet/app/pages/vacinas/vacinas_bloc.dart';
-import 'package:iMyPet/models/vacinas_model.dart';
+import 'package:iMyPet/app/pages/especie/especie_bloc.dart';
+import 'package:iMyPet/models/especie_model.dart';
 
-class VacinasEditPage extends StatefulWidget {
-  VacinasEditPage(this.vacinas);
+class EspecieEditPage extends StatefulWidget {
+  EspecieEditPage(this.especie);
 
-  final Vacinas vacinas;
+  final Especie especie;
 
   @override
-  _VacinasEditPageState createState() => _VacinasEditPageState();
+  _EspecieEditPageState createState() => _EspecieEditPageState();
 }
 
-class _VacinasEditPageState extends State<VacinasEditPage> {
+class _EspecieEditPageState extends State<EspecieEditPage> {
   TextEditingController _nomeController;
-  final _bloc = VacinasBloc();
+  final _bloc = EspecieBloc();
 
   @override
   void initState() {
-    _bloc.setVacinas(widget.vacinas);
-    _nomeController = TextEditingController(text: widget.vacinas.nome);
+    _bloc.setEspecie(widget.especie);
+    _nomeController = TextEditingController(text: widget.especie.nome);
     super.initState();
   }
 
@@ -32,7 +32,7 @@ class _VacinasEditPageState extends State<VacinasEditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Vacinas"),
+        title: Text("Especie"),
       ),
       body: Container(
         child: Padding(
