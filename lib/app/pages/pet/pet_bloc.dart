@@ -19,6 +19,7 @@ class PetBloc extends BlocBase {
   String _sexo;
   String _pelagem;
   String _observacao;
+ bool _castrado;
   String _racaId;
   String  _userId;
 
@@ -44,6 +45,7 @@ class PetBloc extends BlocBase {
     setDataNascimento(pet.dataNascimento);
     setSexo(pet.sexo);
     setPelagem(pet.pelagem);
+    setPelagem(pet.castrado);
     setObservacao(pet.observacao);
     setRacaId(pet.racaId);
     
@@ -127,5 +129,3 @@ class PetBloc extends BlocBase {
     super.dispose();
   }
 }
-
-

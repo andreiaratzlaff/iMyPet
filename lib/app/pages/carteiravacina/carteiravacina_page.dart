@@ -3,7 +3,6 @@ import 'package:iMyPet/app/menu/drawer.dart';
 import 'package:iMyPet/app/pages/carteiravacina/carteiravacina_bloc.dart';
 import 'package:iMyPet/app/pages/carteiravacina/carteiravacina_edit_page.dart';
 import 'package:iMyPet/models/carteiravacina_model.dart';
-import 'package:intl/intl.dart';
 
 class CarteiraVacinaPage extends StatefulWidget {
   final String title;

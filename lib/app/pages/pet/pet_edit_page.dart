@@ -80,7 +80,9 @@ class _PetEditPageState extends State<PetEditPage> {
 
                       return snapshotEspecie.hasData
                           ? DropdownButton<String>(
-                              value: _especieId,
+                              value: _especieId == null || _especieId == ""?
+                                    snapshotEspecie.data.first.documentId():
+                                    _especieId,
                               isExpanded: true,
                               items: snapshotEspecie.data
                                   .map<DropdownMenuItem<String>>(
@@ -123,7 +125,9 @@ class _PetEditPageState extends State<PetEditPage> {
 
                       return snapshotRaca.hasData
                           ? DropdownButton<String>(
-                              value:_racaId,
+                              value: _racaId == null || _racaId == ""?
+                                     snapshotRaca.data.first.documentId():
+                                     _racaId,
                               isExpanded: true,
                               items: snapshotRaca.data
                                   .map<DropdownMenuItem<String>>((Raca raca) {
