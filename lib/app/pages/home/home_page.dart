@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                           text: "Hotel",
                         ),
                         Tab(
-                          text: "Dog Walter",)
+                          text: "Dog Walker",)
                         ,
                     ],
                     ),
