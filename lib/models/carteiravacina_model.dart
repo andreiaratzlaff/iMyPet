@@ -8,6 +8,7 @@ class CarteiraVacina extends ModeloBase {
   String nomePet;
   int peso;
   String vacinaId;
+  String petId;
   String vacina;
   String fabricante;
   DateTime validade;
@@ -27,6 +28,7 @@ class CarteiraVacina extends ModeloBase {
     this.codigoPet = documento.data["codigoPet"];
     this.nomePet = documento.data["nomePet"];
     this.peso = documento.data["peso"];
+    this.petId = documento.data["petId"];
     this.vacinaId = documento.data["vacinaId"];
     this.vacina = documento.data["vacina"];
     this.validade = getDateTime(documento.data["validade"]);
@@ -46,6 +48,7 @@ class CarteiraVacina extends ModeloBase {
     var map = new Map<String, dynamic>();
     map['codigoPet'] = this.codigoPet;
     map['nomePet'] = this.nomePet;
+    map['petId'] = this.petId;
     map['peso'] = this.peso;
     map['vacinaId'] = this.vacinaId;
     map['vacina'] = this.vacina;

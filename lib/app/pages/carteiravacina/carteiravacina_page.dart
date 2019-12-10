@@ -36,6 +36,7 @@ class _CarteiraVacinaPageState extends State<CarteiraVacinaPage> {
             ..eNecessarioRevacinar = false
             ..fabricante = ""
             ..lembrete = ""
+            ..petId = ""
             ..nomePet = ""
             ..observacao = ""
             ..peso = 0

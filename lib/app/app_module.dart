@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:iMyPet/app/app_widget.dart';
 import 'package:iMyPet/app/pages/banhoETosa/banhoETosa_repository.dart';
 import 'package:iMyPet/app/pages/carteiravacina/carteiravacina_repository.dart';
+import 'package:iMyPet/app/pages/dogWalker/dogWalker_repository.dart';
 import 'package:iMyPet/app/pages/especie/especie_repository.dart';
 import 'package:iMyPet/app/pages/meusdados/meudados_repository.dart';
 import 'package:iMyPet/app/pages/pet/pet_repository.dart';
@@ -25,6 +26,7 @@ class AppModule extends ModuleWidget {
          Dependency((i) => EspecieRepository()),
          Dependency((i) => RacaRepository()),
         Dependency((i) => BanhoETosaRepository()),
+        Dependency((i) => DogWalkerRepository()),
       ];
 
   @override

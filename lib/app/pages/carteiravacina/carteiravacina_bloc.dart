@@ -25,6 +25,7 @@ class CarteiraVacinaBloc extends BlocBase {
   String _vacinaId;
   String _vermifugoId;
   String _vermifugos;
+   String _petId;
 
   CarteiraVacinaBloc() {
     _validadeController.listen((value) => _validade = value);
@@ -42,6 +43,7 @@ class CarteiraVacinaBloc extends BlocBase {
     _vacinaController.listen((value) => _vacina = value);
     _vacinaIdController.listen((value) => _vacinaId = value);
     _vermifugoIdController.listen((value) => _vermifugoId = value);
+        _petIdController.listen((value) => _petId = value);
     _vermifugosController.listen((value) => _vermifugos = value);
   }
 
@@ -60,6 +62,7 @@ class CarteiraVacinaBloc extends BlocBase {
     setVacina(carteiraVacina.vacina);
     setVacinaId(carteiraVacina.vacinaId);
     setVermifugoId(carteiraVacina.vermifugoId);
+    //setpetId(carteiraVacina.petId);
     setVermifugos(carteiraVacina.vermifugos);
   }
 
@@ -70,6 +73,11 @@ class CarteiraVacinaBloc extends BlocBase {
   var _codigoPetController = BehaviorSubject<String>();
   Stream<String> get outCodigoPet => _codigoPetController.stream;
   void setCodigoPet(String valor) => _codigoPetController.sink.add(valor);
+
+
+    var _petIdController = BehaviorSubject<String>();
+  Stream<String> get outPetID => _codigoPetController.stream;
+  void setPetId(String valor) => _petIdController.sink.add(valor);
 
   var _dataAplicacaoController = BehaviorSubject<DateTime>();
   Stream<DateTime> get outDataAplicacao => _dataAplicacaoController.stream;
@@ -96,6 +104,7 @@ class CarteiraVacinaBloc extends BlocBase {
   Stream<String> get outLembrete => _lembreteController.stream;
   void setLembrete(String valor) => _lembreteController.sink.add(valor);
 
+  
   var _nomePetController = BehaviorSubject<String>();
   Stream<String> get outNomePet => _nomePetController.stream;
   void setNomePet(String valor) => _nomePetController.sink.add(valor);
@@ -134,6 +143,7 @@ class CarteiraVacinaBloc extends BlocBase {
       ..fabricante = _fabricante
       ..lembrete = _lembrete
       ..nomePet = _nomePet
+      ..petId = _petId
       ..observacao = _observacao
       ..peso = _peso
       ..vacina = _vacina

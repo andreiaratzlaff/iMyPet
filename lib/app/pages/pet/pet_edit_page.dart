@@ -236,14 +236,7 @@ class _PetEditPageState extends State<PetEditPage> {
                       Navigator.pop(context);
                     }
                   }),
-              RaisedButton(
-                  child: Text("Editar"),
-                  onPressed: () {
-                    if (_bloc.insertOrUpdate()) {
-                      Navigator.pop(context);
-                    }
-                  }),
-            ],
+              ],
           ),
         ),
       ),

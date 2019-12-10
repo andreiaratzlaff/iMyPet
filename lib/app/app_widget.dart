@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iMyPet/app/menu/routes.dart';
 import 'package:iMyPet/app/pages/carteiravacina/carteiravacina_page.dart';
+import 'package:iMyPet/app/pages/dogWalker/dogWalker_page.dart';
 import 'package:iMyPet/app/pages/especie/especie_page.dart';
 import 'package:iMyPet/app/pages/home/home_module.dart';
 import 'package:iMyPet/app/pages/home/home_page.dart';
@@ -25,6 +26,7 @@ class AppWidget extends StatelessWidget {
         Rotas.banhoETosa: (context) => BanhoETosaPage(),
         Rotas.especie: (context) => EspeciePage(),
         Rotas.raca: (context) => RacaPage(),
+        Rotas.dogWalker: (context) => DogWalkerPage(),
       },
       title: 'Flutter Slidy',
       theme: ThemeData(

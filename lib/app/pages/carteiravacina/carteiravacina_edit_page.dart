@@ -21,6 +21,7 @@ class _CarteiraVacinaEditPageState extends State<CarteiraVacinaEditPage> {
   final _dateFormat = DateFormat("dd/MM/yyyy");
 
   TextEditingController _codigoPetController;
+  TextEditingController _petIdController;
   TextEditingController _fabricanteController;
   TextEditingController _lembreteController;
   TextEditingController _nomePetController;
@@ -35,6 +36,7 @@ class _CarteiraVacinaEditPageState extends State<CarteiraVacinaEditPage> {
     _bloc.setCarteiraVacina(widget.carteiraVacina);
 
     _codigoPetController = TextEditingController(text: widget.carteiraVacina.codigoPet);
+    // _petIdController = TextEditingController(text: widget.carteiraVacina.petID);
     _fabricanteController = TextEditingController(text: widget.carteiraVacina.fabricante);
     _lembreteController = TextEditingController(text: widget.carteiraVacina.lembrete);
     _nomePetController = TextEditingController(text: widget.carteiraVacina.nomePet);
@@ -50,6 +52,7 @@ class _CarteiraVacinaEditPageState extends State<CarteiraVacinaEditPage> {
   @override
   void dispose() {
     _codigoPetController.dispose();
+    _petIdController.dispose();
     _fabricanteController.dispose();
     _lembreteController.dispose();
     _nomePetController.dispose();
@@ -73,13 +76,8 @@ class _CarteiraVacinaEditPageState extends State<CarteiraVacinaEditPage> {
           padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: <Widget>[
- Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Código Pet"),
-                  controller: _codigoPetController,
-                  onChanged: _bloc.setCodigoPet,
-                ),
-              ),
+ 
+       
 Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Nome Pet"),
@@ -94,38 +92,37 @@ Container(
                   onChanged: _bloc.setVacina,
                 ),
               ),
-              Container(height: 20),
-              Container(
-                child: InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: "Vacina",
-                  ),
-                  child: StreamBuilder<List<Vacinas>>(
-                    stream: _blocVacinas.vacinas,
-                    builder: (context, snapshotVacinas) {
-                      return snapshotVacinas.hasData
-                          ? DropdownButton<Vacinas>(
-                              value: _bloc.outVacinaId == null
-                                  ? snapshotVacinas.data.first
-                                  : getVacina(_bloc.outVacinaId),
-                              isExpanded: true,
-                              items: snapshotVacinas.data
-                                  .map<DropdownMenuItem<Vacinas>>(
-                                      (Vacinas vacinas) {
-                                return DropdownMenuItem<Vacinas>(
-                                  value: vacinas,
-                                  child: Text(vacinas.nome),
-                                );
-                              }).toList(),
-                              onChanged: (Vacinas vacinas) {
-                                _bloc.setVacinaId(vacinas.documentId());
-                              },
-                            )
-                          : CircularProgressIndicator();
-                    },
-                  ),
-                ),
-              ),
+             // Container(height: 20),
+              //Container(
+              //  child: InputDecorator(
+                //  decoration: InputDecoration(
+                //    labelText: "Vacina",
+//                  child: StreamBuilder<List<Vacinas>>(
+               //     stream: _blocVacinas.vacinas,
+            //        builder: (context, snapshotVacinas) {
+             ////         return snapshotVacinas.hasData
+                //          ? DropdownButton<Vacinas>(
+                   //           value: _bloc.outVacinaId == null
+                       //           ? snapshotVacinas.data.first
+                       //           : getVacina(_bloc.outVacinaId),
+                        //      isExpanded: true,
+                        //      items: snapshotVacinas.data
+                             //     .map<DropdownMenuItem<Vacinas>>(
+                            //          (Vacinas vacinas) {
+                           //     return DropdownMenuItem<Vacinas>(
+                               //   value: vacinas,
+                               //   child: Text(vacinas.nome),
+                             //   );
+                             // }).toList(),
+                           //   onChanged: (Vacinas vacinas) {
+                           //     _bloc.setVacinaId(vacinas.documentId());
+                           //   },
+                           // )
+                        //  : CircularProgressIndicator();
+                   // },
+                 // ),
+              //  ),
+            //  ),
 
               Container(height: 20),
               StreamBuilder<DateTime>(
@@ -225,13 +222,13 @@ Container(
                 ),
               ),
 
-              Container(
-                child: TextField(
-                  decoration: InputDecoration(labelText: "Vermifugo Id"),
-                  controller: _vermifugoIdController,
-                  onChanged: _bloc.setVermifugoId,
-                ),
-              ),
+              //Container(
+              //  child: TextField(
+              //    decoration: InputDecoration(labelText: "Vermifugo Id"),
+               //   controller: _vermifugoIdController,
+             //     onChanged: _bloc.setVermifugoId,
+             //   ),
+            //  ),
               Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Vermifugos"),

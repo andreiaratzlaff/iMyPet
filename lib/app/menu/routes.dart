@@ -1,4 +1,5 @@
 import 'package:iMyPet/app/pages/carteiravacina/carteiravacina_page.dart';
+import 'package:iMyPet/app/pages/dogWalker/dogWalker_page.dart';
 import 'package:iMyPet/app/pages/especie/especie_page.dart';
 import 'package:iMyPet/app/pages/home/home_page.dart';
 import 'package:iMyPet/app/pages/meusdados/meusdados_page.dart';
@@ -17,4 +18,5 @@ class Rotas {
   static const String banhoETosa = BanhoETosaPage.rota;
   static const String especie = EspeciePage.rota;
   static const String raca = RacaPage.rota;
+  static const String dogWalker = DogWalkerPage.rota;
 }
