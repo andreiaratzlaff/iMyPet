@@ -30,6 +30,7 @@ class _DogWalkerEditPageState extends State<DogWalkerEditPage> {
   TextEditingController _informeARestricaoController;
   TextEditingController _telebuscaController;
   TextEditingController _empresaIdController;
+  TextEditingController _petIdController;
   TextEditingController _observacaoController;
 
     
@@ -65,43 +66,7 @@ class _DogWalkerEditPageState extends State<DogWalkerEditPage> {
           padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: <Widget>[
-              Container(
-                child: InputDecorator(
-                  decoration: InputDecoration(
-                    labelText: "Pet",
-                  ),
-                  child: StreamBuilder<List<Pet>>(
-                  //  stream: _blocPet.pet,
-                    builder: (context, snapshotPet) {
-                      var _petId = _bloc.outPetIdValue;
-
-                      return snapshotPet.hasData
-                          ? DropdownButton<String>(
-                              value: _petId == null || _petId == ""?
-                                    snapshotPet.data.first.documentId():
-                                    _petId,
-                              isExpanded: true,
-                              items: snapshotPet.data
-                                  .map<DropdownMenuItem<String>>(
-                                      (Pet pet) {
-                                return DropdownMenuItem<String>(
-                                  value: pet.documentId(),
-                                  child: Text(pet.nome),
-                                );
-                              }).toList(),
-                              onChanged: (String petId) {
-                                setState(() {
-                                  _petId = petId;
-                                  _bloc.setPetId(petId);
-                                }
-                                );
-                              },
-                            )
-                          : CircularProgressIndicator();
-                    },
-                  ),
-                ),
-              ),
+             
               Container(
                 child: TextField(
                   decoration: InputDecoration(labelText: "Empresa"),
