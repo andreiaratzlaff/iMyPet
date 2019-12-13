@@ -19,6 +19,7 @@ class _DadoEmpresaEditPageState extends State<DadoEmpresaEditPage> {
 
   final _dateFormat = DateFormat("dd/MM/yyyy");
   TextEditingController _razaoSocialController;
+  TextEditingController _nomeController;
   TextEditingController _paginaFacebookInstagramController;
   TextEditingController _emailController;
   TextEditingController _dddCelularController;
@@ -35,24 +36,17 @@ class _DadoEmpresaEditPageState extends State<DadoEmpresaEditPage> {
   void initState() {
     _bloc.setDadoEmpresa(widget.dadoEmpresa);
 
-    _nomeController = TextEditingController(text: widget.pet.nome);
-    _corController = TextEditingController(text: widget.pet.cor);
-    _sexoController = TextEditingController(text: widget.pet.sexo);
-    _pelagemController = TextEditingController(text: widget.pet.pelagem);
-    _castradoController = TextEditingController(text: widget.pet.castrado);
-    _observacaoController = TextEditingController(text: widget.pet.observacao);
-
-    String razaoSocial;
-  String nome;
-  String paginaFacebookInstagram;
-  String email;
-  String dddCelular;
-  String dddTelefone;
-  String cep;
-  String endereco;
-  String cidade;
-  String estado;
-  String especialidadeId;
+    _razaoSocialController = TextEditingController(text: widget.dadoEmpresa.razaoSocial);
+    _nomeController = TextEditingController(text: widget.dadoEmpresa.nome);
+    _paginaFacebookInstagramController = TextEditingController(text: widget.dadoEmpresa.paginaFacebookInstagram);
+    _emailController = TextEditingController(text: widget.dadoEmpresa.email);
+    _dddCelularController = TextEditingController(text: widget.dadoEmpresa.dddCelular);
+    _dddTelefoneController = TextEditingController(text: widget.dadoEmpresa.dddTelefone);
+    _cepController = TextEditingController(text: widget.dadoEmpresa.cep);
+    _enderecoController = TextEditingController(text: widget.dadoEmpresa.endereco);
+    _cidadeController = TextEditingController(text: widget.dadoEmpresa.cidade);
+    _estadoController = TextEditingController(text: widget.dadoEmpresa.estado);
+    _especialidadeIdController = TextEditingController(text: widget.dadoEmpresa.especialidadeId);
 
     super.initState();
   }
@@ -68,6 +62,18 @@ class _DadoEmpresaEditPageState extends State<DadoEmpresaEditPage> {
     _castradoController.dispose();
     _observacaoController.dispose();
     super.dispose();
+
+       String razaoSocial;
+  String nome;
+  String paginaFacebookInstagram;
+  String email;
+  String dddCelular;
+  String dddTelefone;
+  String cep;
+  String endereco;
+  String cidade;
+  String estado;
+  String especialidadeId;
   }
 
   @override
